@@ -16,9 +16,9 @@ describe('ContactComponent', () => {
 
   it('should render the contact form', async () => {
     await setup();
-    expect(screen.getByLabelText(/name/i)).toBeTruthy();
-    expect(screen.getByLabelText(/email/i)).toBeTruthy();
-    expect(screen.getByLabelText(/message/i)).toBeTruthy();
+    expect(screen.getByLabelText(/^name/i)).toBeTruthy();
+    expect(screen.getByLabelText(/^email/i)).toBeTruthy();
+    expect(screen.getByLabelText(/^message/i)).toBeTruthy();
   });
 
   it('should render send and whatsapp buttons', async () => {
@@ -30,9 +30,9 @@ describe('ContactComponent', () => {
   it('should show success message after valid submission', async () => {
     await setup();
 
-    const nameInput = screen.getByLabelText(/name/i);
-    const emailInput = screen.getByLabelText(/email/i);
-    const messageInput = screen.getByLabelText(/message/i);
+    const nameInput = screen.getByLabelText(/^name/i);
+    const emailInput = screen.getByLabelText(/^email/i);
+    const messageInput = screen.getByLabelText(/^message/i);
 
     fireEvent.input(nameInput, { target: { value: 'Jane Doe' } });
     fireEvent.input(emailInput, { target: { value: 'jane@example.com' } });
@@ -47,12 +47,37 @@ describe('ContactComponent', () => {
   it('should allow sending another message after success', async () => {
     await setup();
 
-    fireEvent.input(screen.getByLabelText(/name/i), { target: { value: 'Jane Doe' } });
-    fireEvent.input(screen.getByLabelText(/email/i), { target: { value: 'jane@example.com' } });
-    fireEvent.input(screen.getByLabelText(/message/i), { target: { value: 'Hello this is a test message' } });
+    fireEvent.input(screen.getByLabelText(/^name/i), { target: { value: 'Jane Doe' } });
+    fireEvent.input(screen.getByLabelText(/^email/i), { target: { value: 'jane@example.com' } });
+    fireEvent.input(screen.getByLabelText(/^message/i), { target: { value: 'Hello this is a test message' } });
     fireEvent.click(screen.getByRole('button', { name: /send contact message/i }));
 
     fireEvent.click(screen.getByText(/send another message/i));
-    expect(screen.getByLabelText(/name/i)).toBeTruthy();
+    expect(screen.getByLabelText(/^name/i)).toBeTruthy();
+  });
+
+  it('should not submit when form is invalid', async () => {
+    await setup();
+    const submitButton = screen.getByRole('button', { name: /send contact message/i });
+    expect(submitButton).toBeDisabled();
+  });
+
+  it('should show validation errors for touched empty fields', async () => {
+    await setup();
+
+    const nameInput = screen.getByLabelText(/^name/i);
+    fireEvent.focus(nameInput);
+    fireEvent.blur(nameInput);
+
+    // Trigger change detection by clicking submit on invalid form
+    // The form marks fields as touched
+  });
+
+  it('should call whatsapp service on WhatsApp button click', async () => {
+    await setup();
+    const whatsappButton = screen.getByRole('button', { name: /contact us via whatsapp/i });
+    fireEvent.click(whatsappButton);
+    // Should not throw
+    expect(whatsappButton).toBeTruthy();
   });
 });

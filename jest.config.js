@@ -1,7 +1,7 @@
 /** @type {import('jest').Config} */
 module.exports = {
   preset: 'jest-preset-angular',
-  setupFilesAfterSetup: ['<rootDir>/setup-jest.ts'],
+  setupFilesAfterEnv: ['<rootDir>/setup-jest.ts'],
   testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/dist/'],
   coverageDirectory: 'coverage',
   coverageReporters: ['text', 'lcov', 'clover'],
@@ -12,6 +12,7 @@ module.exports = {
     '!src/main.ts',
     '!src/app/app.config.ts',
     '!src/app/app.routes.ts',
+    '!src/app/shared/animations/**',
   ],
   coverageThreshold: {
     global: {

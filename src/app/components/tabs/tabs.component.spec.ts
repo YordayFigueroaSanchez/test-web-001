@@ -32,4 +32,45 @@ describe('TabsComponent', () => {
     expect(screen.getByRole('tab', { name: 'Tab A' })).toHaveAttribute('aria-selected', 'true');
     expect(screen.getByRole('tab', { name: 'Tab B' })).toHaveAttribute('aria-selected', 'false');
   });
+
+  it('should navigate tabs with ArrowRight key', async () => {
+    const user = userEvent.setup();
+    await render(TabsComponent, { inputs: { tabs } });
+
+    const tabA = screen.getByRole('tab', { name: 'Tab A' });
+    tabA.focus();
+    await user.keyboard('{ArrowRight}');
+    expect(screen.getByRole('tabpanel')).toHaveTextContent('Content B');
+  });
+
+  it('should navigate tabs with ArrowLeft key (wrap)', async () => {
+    const user = userEvent.setup();
+    await render(TabsComponent, { inputs: { tabs } });
+
+    const tabA = screen.getByRole('tab', { name: 'Tab A' });
+    tabA.focus();
+    await user.keyboard('{ArrowLeft}');
+    expect(screen.getByRole('tabpanel')).toHaveTextContent('Content B');
+  });
+
+  it('should navigate to first tab with Home key', async () => {
+    const user = userEvent.setup();
+    await render(TabsComponent, { inputs: { tabs } });
+
+    await user.click(screen.getByRole('tab', { name: 'Tab B' }));
+    const tabB = screen.getByRole('tab', { name: 'Tab B' });
+    tabB.focus();
+    await user.keyboard('{Home}');
+    expect(screen.getByRole('tabpanel')).toHaveTextContent('Content A');
+  });
+
+  it('should navigate to last tab with End key', async () => {
+    const user = userEvent.setup();
+    await render(TabsComponent, { inputs: { tabs } });
+
+    const tabA = screen.getByRole('tab', { name: 'Tab A' });
+    tabA.focus();
+    await user.keyboard('{End}');
+    expect(screen.getByRole('tabpanel')).toHaveTextContent('Content B');
+  });
 });

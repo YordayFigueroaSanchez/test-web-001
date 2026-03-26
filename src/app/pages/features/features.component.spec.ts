@@ -18,7 +18,7 @@ describe('FeaturesComponent', () => {
     await setup();
     expect(screen.getByText(/responsive design/i)).toBeTruthy();
     expect(screen.getByText(/accessibility first/i)).toBeTruthy();
-    expect(screen.getByText(/dark mode/i)).toBeTruthy();
+    expect(screen.getByText('Dark Mode')).toBeTruthy();
     expect(screen.getByText(/blazing fast/i)).toBeTruthy();
     expect(screen.getByText(/multi-language/i)).toBeTruthy();
     expect(screen.getByText(/modern stack/i)).toBeTruthy();

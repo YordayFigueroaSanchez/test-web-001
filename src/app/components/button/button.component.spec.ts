@@ -31,4 +31,12 @@ describe('ButtonComponent', () => {
     });
     expect(screen.getByRole('button', { name: 'Submit form' })).toBeInTheDocument();
   });
+
+  it('should apply icon variant without size class', async () => {
+    await render(ButtonComponent, {
+      inputs: { variant: 'icon', ariaLabel: 'Icon btn' },
+    });
+    const button = screen.getByRole('button', { name: 'Icon btn' });
+    expect(button.className).not.toContain('px-5');
+  });
 });
