@@ -1,4 +1,4 @@
-import { Component, input, signal } from '@angular/core';
+import { Component, input, signal, OnInit } from '@angular/core';
 import { TabItem } from '../../shared/interfaces';
 
 @Component({
@@ -43,7 +43,7 @@ import { TabItem } from '../../shared/interfaces';
     </div>
   `,
 })
-export class TabsComponent {
+export class TabsComponent implements OnInit {
   readonly tabs = input<TabItem[]>([]);
   readonly ariaLabel = input('Tabs');
   readonly activeTabId = signal('');

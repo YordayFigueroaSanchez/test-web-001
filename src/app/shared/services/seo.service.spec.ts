@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { Title, Meta } from '@angular/platform-browser';
+import { Title } from '@angular/platform-browser';
 import { SeoService } from './seo.service';
 
 describe('SeoService', () => {

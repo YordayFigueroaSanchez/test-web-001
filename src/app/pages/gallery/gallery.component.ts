@@ -57,9 +57,11 @@ import { GalleryImage } from '../../shared/interfaces';
         role="dialog"
         aria-modal="true"
         aria-label="Image lightbox"
+        tabindex="-1"
         (click)="closeLightbox()"
         (keydown)="onLightboxKeydown($event)"
       >
+        <!-- eslint-disable-next-line @angular-eslint/template/click-events-have-key-events, @angular-eslint/template/interactive-supports-focus -->
         <div class="relative max-w-5xl w-full mx-4" (click)="$event.stopPropagation()">
           <button
             class="absolute -top-12 right-0 text-white text-3xl hover:text-gray-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white rounded"
