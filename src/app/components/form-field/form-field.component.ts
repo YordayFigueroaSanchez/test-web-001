@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { AfterContentChecked, Component, ElementRef, inject, input } from '@angular/core';
 
 let nextId = 0;
 
@@ -7,7 +7,7 @@ let nextId = 0;
   standalone: true,
   template: `
     <div class="mb-4">
-      <div class="block">
+      <label [attr.for]="fieldId()" class="block">
         <span class="block text-sm font-medium mb-1 text-gray-700 dark:text-gray-300">
           {{ label() }}
           @if (required()) {
@@ -15,7 +15,7 @@ let nextId = 0;
           }
         </span>
         <ng-content></ng-content>
-      </div>
+      </label>
 
       @if (errorMessage()) {
         <p
@@ -29,11 +29,37 @@ let nextId = 0;
     </div>
   `,
 })
-export class FormFieldComponent {
+export class FormFieldComponent implements AfterContentChecked {
+  private readonly host = inject(ElementRef<HTMLElement>);
+
   readonly label = input.required<string>();
   readonly type = input<'text' | 'email' | 'tel' | 'textarea' | 'select'>('text');
   readonly placeholder = input('');
   readonly errorMessage = input('');
   readonly required = input(false);
   readonly fieldId = input(`form-field-${++nextId}`);
+
+  ngAfterContentChecked(): void {
+    this.syncProjectedControl();
+  }
+
+  private syncProjectedControl(): void {
+    const control = this.host.nativeElement.querySelector('input, textarea, select');
+    if (!control) {
+      return;
+    }
+
+    control.id = this.fieldId();
+
+    if (this.required() && !control.hasAttribute('aria-required')) {
+      control.setAttribute('aria-required', 'true');
+    }
+
+    const errorId = `${this.fieldId()}-error`;
+    if (this.errorMessage()) {
+      control.setAttribute('aria-describedby', errorId);
+    } else if (control.getAttribute('aria-describedby') === errorId) {
+      control.removeAttribute('aria-describedby');
+    }
+  }
 }

@@ -141,8 +141,17 @@ export class ContactComponent implements OnInit {
 
   openWhatsApp(): void {
     const formValue = this.contactForm.getRawValue();
+    const config = {
+      phoneNumber: '',
+      defaultMessage: 'Hello! I would like more information.',
+    };
+
+    if (!this.whatsAppService.validatePhone(config.phoneNumber.replace(/\D/g, ''))) {
+      return;
+    }
+
     this.whatsAppService.openChat(
-      { phoneNumber: '', defaultMessage: 'Hello! I would like more information.' },
+      config,
       { name: formValue.name, email: formValue.email, message: formValue.message },
     );
   }
