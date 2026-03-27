@@ -262,3 +262,27 @@ Estado actualizado en aidlc-state.md. Presentando para aprobación.
 
 ---
 
+## OPERACIONES - Incidente Resuelto (Estilos Pages)
+**Timestamp**: 2026-03-27T02:00:00Z
+**User Input**: "Dejar una nota breve en audit.md indicando incidente resuelto"
+**AI Response**: "Incidente resuelto: estilos visibles en Pages tras normalización de artifact + validación automática HTML."
+**Context**: OPERACIONES - Cierre de incidente de visibilidad CSS en GitHub Pages.
+
+---
+
+## OPERACIONES - Migración CSP (Meta a Headers)
+**Timestamp**: 2026-03-27T02:10:00Z
+**User Input**: "Migrar CSP desde meta tags HTML hacia headers de infraestructura/proxy"
+**AI Response**: "Migración completada: eliminado tag CSP meta en src/index.html, script inline externalizado en public/theme-init.js, enforcement CI agregado para bloquear meta CSP en source y artifact, y política CSP de headers generada en el artifact de despliegue (_headers) con frame-ancestors y report-to."
+**Context**: OPERACIONES - Hardening de seguridad OWASP Top 10 y gobernanza para evitar reintroducción de CSP en HTML.
+
+---
+
+## OPERACIONES - Plantillas de Infraestructura CSP
+**Timestamp**: 2026-03-27T02:20:00Z
+**User Input**: "si"
+**AI Response**: "Generadas plantillas listas para despliegue de headers de seguridad en Nginx y CloudFront, incluyendo frame-ancestors y report-to, con notas operativas de aplicacion e invalidacion de cache."
+**Context**: OPERACIONES - Entregables de infraestructura en aidlc-docs/operations/security-headers/.
+
+---
+
