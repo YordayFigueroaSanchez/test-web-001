@@ -56,6 +56,10 @@ jobs:
           if [ ! -f dist/test-web-001/pages-artifact/index.html ] && [ -f dist/test-web-001/pages-artifact/es/index.html ]; then
             cp -R dist/test-web-001/pages-artifact/es/. dist/test-web-001/pages-artifact/
           fi
+          if [ -f dist/test-web-001/pages-artifact/index.html ]; then
+            sed -i "s|<base href=\"/${{ github.event.repository.name }}/es/\">|<base href=\"/${{ github.event.repository.name }}/\">|g" dist/test-web-001/pages-artifact/index.html
+            sed -i "s|<base href=\"/${{ github.event.repository.name }}/en/\">|<base href=\"/${{ github.event.repository.name }}/\">|g" dist/test-web-001/pages-artifact/index.html
+          fi
           if [ ! -f dist/test-web-001/pages-artifact/404.html ] && [ -f dist/test-web-001/pages-artifact/index.html ]; then
             cp dist/test-web-001/pages-artifact/index.html dist/test-web-001/pages-artifact/404.html
           fi
