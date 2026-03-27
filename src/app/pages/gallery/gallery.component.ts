@@ -80,13 +80,13 @@ import { GalleryImage } from '../../shared/interfaces';
           </button>
 
           <img
-            [src]="currentImage()?.src"
-            [alt]="currentImage()?.alt ?? ''"
+            [src]="currentImage().src"
+            [alt]="currentImage().alt"
             class="w-full max-h-[80vh] object-contain rounded-lg"
           />
 
           <p class="text-white text-center mt-4 text-sm">
-            {{ currentImage()?.alt }} — {{ selectedIndex() + 1 }} / {{ images().length }}
+            {{ currentImage().alt }} — {{ selectedIndex() + 1 }} / {{ images().length }}
           </p>
 
           <button
