@@ -48,19 +48,31 @@ jobs:
       - name: Build
         run: npx ng build --base-href /${{ github.event.repository.name }}/
 
+      - name: Prepare Pages artifact
+        run: |
+          rm -rf dist/test-web-001/pages-artifact
+          mkdir -p dist/test-web-001/pages-artifact
+          cp -R dist/test-web-001/browser/. dist/test-web-001/pages-artifact/
+          if [ ! -f dist/test-web-001/pages-artifact/index.html ] && [ -f dist/test-web-001/pages-artifact/es/index.html ]; then
+            cp -R dist/test-web-001/pages-artifact/es/. dist/test-web-001/pages-artifact/
+          fi
+          if [ ! -f dist/test-web-001/pages-artifact/404.html ] && [ -f dist/test-web-001/pages-artifact/index.html ]; then
+            cp dist/test-web-001/pages-artifact/index.html dist/test-web-001/pages-artifact/404.html
+          fi
+
       - name: Verify artifact integrity
         run: |
-          test -f dist/test-web-001/browser/index.html
-          find dist/test-web-001/browser -type f -print0 \
+          test -f dist/test-web-001/pages-artifact/index.html
+          find dist/test-web-001/pages-artifact -type f -print0 \
             | sort -z \
-            | xargs -0 sha256sum > dist/test-web-001/browser/SHA256SUMS.txt
-          test -s dist/test-web-001/browser/SHA256SUMS.txt
+            | xargs -0 sha256sum > dist/test-web-001/pages-artifact/SHA256SUMS.txt
+          test -s dist/test-web-001/pages-artifact/SHA256SUMS.txt
 
       - name: Upload artifact
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist/test-web-001/browser
+          path: dist/test-web-001/pages-artifact
 
   deploy:
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
