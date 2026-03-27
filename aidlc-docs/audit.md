@@ -326,3 +326,11 @@ Estado actualizado en aidlc-state.md. Presentando para aprobación.
 
 ---
 
+## OPERACIONES - Cierre de Caso (Coverage Deploy)
+**Timestamp**: 2026-03-26T23:54:57Z
+**User Input**: "cierre este caso y dime si quedan casos pendientes"
+**AI Response**: "Caso cerrado: se identifico y resolvio el fallo de deploy por threshold de cobertura de ramas (79.51% < 80%) agregando pruebas al language-switcher; test:coverage validado localmente en 81.92% branch coverage y cambios publicados."
+**Context**: OPERACIONES - Cierre formal del caso de fallo de test en deploy por coverage.
+
+---
+
