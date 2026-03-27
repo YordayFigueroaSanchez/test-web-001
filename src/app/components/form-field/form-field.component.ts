@@ -7,7 +7,7 @@ let nextId = 0;
   standalone: true,
   template: `
     <div class="mb-4">
-      <label class="block">
+      <div class="block">
         <span class="block text-sm font-medium mb-1 text-gray-700 dark:text-gray-300">
           {{ label() }}
           @if (required()) {
@@ -15,7 +15,7 @@ let nextId = 0;
           }
         </span>
         <ng-content></ng-content>
-      </label>
+      </div>
 
       @if (errorMessage()) {
         <p

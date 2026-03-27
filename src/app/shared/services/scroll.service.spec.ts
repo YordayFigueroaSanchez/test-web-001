@@ -30,7 +30,7 @@ describe('ScrollService', () => {
   });
 
   it('should call scrollTo on scrollToTop', () => {
-    const spy = jest.spyOn(window, 'scrollTo').mockImplementation(() => {});
+    const spy = jest.spyOn(window, 'scrollTo').mockImplementation(() => undefined);
     service.scrollToTop();
     expect(spy).toHaveBeenCalledWith({ top: 0, behavior: 'smooth' });
     spy.mockRestore();
