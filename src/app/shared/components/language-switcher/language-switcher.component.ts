@@ -18,10 +18,37 @@ import { Component, input } from '@angular/core';
 })
 export class LanguageSwitcherComponent {
   readonly currentLocale = input<'es' | 'en'>('es');
+  private readonly supportedLocales = new Set(['es', 'en']);
 
   targetUrl(): string {
     const targetLocale = this.currentLocale() === 'es' ? 'en' : 'es';
-    const currentPath = typeof window !== 'undefined' ? window.location.hash : '';
-    return `/${targetLocale}/${currentPath}`;
+    const currentHash = this.getCurrentHash();
+    const repositoryBasePath = this.getRepositoryBasePath();
+
+    return `${repositoryBasePath}${targetLocale}/${currentHash}`;
+  }
+
+  private getCurrentHash(): string {
+    if (typeof window === 'undefined') {
+      return '#/';
+    }
+
+    return window.location.hash || '#/';
+  }
+
+  private getRepositoryBasePath(): string {
+    if (typeof window === 'undefined') {
+      return '/';
+    }
+
+    const baseHref = document.querySelector('base')?.getAttribute('href') || '/';
+    const effectiveBasePath = baseHref !== '/' ? baseHref : window.location.pathname;
+    const segments = effectiveBasePath.split('/').filter(Boolean);
+
+    if (segments.length > 0 && this.supportedLocales.has(segments[segments.length - 1])) {
+      segments.pop();
+    }
+
+    return segments.length > 0 ? `/${segments.join('/')}/` : '/';
   }
 }

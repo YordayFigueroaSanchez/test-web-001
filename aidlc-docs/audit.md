@@ -310,3 +310,11 @@ Estado actualizado en aidlc-state.md. Presentando para aprobación.
 
 ---
 
+## CONSTRUCCION - Base Path i18n Recovery
+**Timestamp**: 2026-03-26T23:43:38Z
+**User Input**: "Fix i18n Path Resolution on GitHub Pages"
+**AI Response**: "Se corrigio la generacion de URL en language-switcher para conservar el subpath del repositorio (/test-web-001/) al alternar idiomas, se actualizo APP_BASE_HREF en app.config.ts para resolver base href dinamicamente, y se ajustaron scripts de build con --base-href /test-web-001/."
+**Context**: CONSTRUCCION - Correccion de perdida de subdirectorio en cambio de idioma para GitHub Pages.
+
+---
+

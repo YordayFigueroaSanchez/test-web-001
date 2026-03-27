@@ -4,8 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
-    "build:es": "ng build --configuration production --localize",
+    "build": "ng build --configuration production --base-href /test-web-001/",
+    "build:es": "ng build --configuration production --localize --base-href /test-web-001/",
     "watch": "ng build --watch --configuration development",
     "test": "jest",
     "test:watch": "jest --watch",
