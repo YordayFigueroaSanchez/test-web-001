@@ -78,6 +78,28 @@ jobs:
             | xargs -0 sha256sum > dist/test-web-001/pages-artifact/SHA256SUMS.txt
           test -s dist/test-web-001/pages-artifact/SHA256SUMS.txt
 
+      - name: Validate artifact HTML for Pages
+        run: |
+          set -euo pipefail
+          REPO_NAME="${GITHUB_REPOSITORY#*/}"
+          ROOT_INDEX="dist/test-web-001/pages-artifact/index.html"
+
+          test -f "$ROOT_INDEX"
+
+          # Ensure the normalized root entrypoint points to the repo base path.
+          if ! grep -q "<base href=\"/${REPO_NAME}/\">" "$ROOT_INDEX"; then
+            echo "::error file=$ROOT_INDEX::Root base href is not normalized to /${REPO_NAME}/"
+            exit 1
+          fi
+
+          # Fail fast if deferred stylesheet tags that rely on inline onload remain.
+          while IFS= read -r html; do
+            if grep -Eq '<link rel="stylesheet"[^>]*media="print"[^>]*onload=' "$html"; then
+              echo "::error file=$html::Found deferred stylesheet pattern (media=print + onload)."
+              exit 1
+            fi
+          done < <(find dist/test-web-001/pages-artifact -type f -name '*.html' | sort)
+
       - name: Upload artifact
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         uses: actions/upload-pages-artifact@v3
