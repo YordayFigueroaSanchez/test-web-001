@@ -1,10 +1,13 @@
-name: Build and Deploy
+name: Build, Deploy, and Audit
 
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - 'aidlc-docs/audit.md'
   pull_request:
     branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -18,6 +21,8 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -37,8 +42,19 @@ jobs:
       - name: Test
         run: npm run test:coverage
 
+      - name: Security audit (production dependencies)
+        run: npm audit --omit=dev --audit-level=high
+
       - name: Build
         run: npx ng build --base-href /${{ github.event.repository.name }}/
+
+      - name: Verify artifact integrity
+        run: |
+          test -f dist/test-web-001/browser/index.html
+          find dist/test-web-001/browser -type f -print0 \
+            | sort -z \
+            | xargs -0 sha256sum > dist/test-web-001/browser/SHA256SUMS.txt
+          test -s dist/test-web-001/browser/SHA256SUMS.txt
 
       - name: Upload artifact
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
@@ -50,10 +66,61 @@ jobs:
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+      contents: read
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+    outputs:
+      page_url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  audit-log:
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    needs: [build, deploy]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Append deployment result to AI-DLC audit log
+        env:
+          BUILD_STATUS: ${{ needs.build.result }}
+          DEPLOY_STATUS: ${{ needs.deploy.result }}
+          PAGE_URL: ${{ needs.deploy.outputs.page_url }}
+          RUN_ID: ${{ github.run_id }}
+          SHA: ${{ github.sha }}
+          ACTOR: ${{ github.actor }}
+        run: |
+          timestamp="$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+          {
+            echo "## OPERACIONES - Despliegue GitHub Pages"
+            echo "**Timestamp**: ${timestamp}"
+            echo "**User Input**: \"N/A (Automatizado por GitHub Actions)\""
+            echo "**AI Response**: \"Despliegue ejecutado. Build=${BUILD_STATUS}, Deploy=${DEPLOY_STATUS}, URL=${PAGE_URL:-N/A}, RunID=${RUN_ID}, Commit=${SHA}\""
+            echo "**Context**: OPERACIONES - Pipeline automático. Trigger actor=${ACTOR}."
+            echo
+            echo "---"
+            echo
+          } >> aidlc-docs/audit.md
+
+      - name: Commit and push audit log update
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add aidlc-docs/audit.md
+          if git diff --cached --quiet; then
+            echo "No audit changes to commit."
+            exit 0
+          fi
+          git commit -m "chore(audit): append deployment status [skip ci]"
+          git push
