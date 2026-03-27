@@ -4,7 +4,20 @@ import { LanguageSwitcherComponent } from './language-switcher.component';
 describe('LanguageSwitcherComponent', () => {
   afterEach(() => {
     history.replaceState({}, '', '/');
+    const baseTag = document.querySelector('base');
+    if (baseTag) {
+      baseTag.setAttribute('href', '/');
+    }
   });
+
+  function setBaseHref(href: string): void {
+    let baseTag = document.querySelector('base');
+    if (!baseTag) {
+      baseTag = document.createElement('base');
+      document.head.appendChild(baseTag);
+    }
+    baseTag.setAttribute('href', href);
+  }
 
   it('should show EN when current locale is es', async () => {
     await render(LanguageSwitcherComponent, {
@@ -36,5 +49,29 @@ describe('LanguageSwitcherComponent', () => {
 
     const languageLink = screen.getByRole('link', { name: 'Switch to English' });
     expect(languageLink).toHaveAttribute('href', '/test-web-001/en/#/contact');
+  });
+
+  it('should strip locale segment from base href when generating target URL', async () => {
+    setBaseHref('/test-web-001/es/');
+    history.replaceState({}, '', '/test-web-001/es/');
+
+    await render(LanguageSwitcherComponent, {
+      inputs: { currentLocale: 'es' },
+    });
+
+    const languageLink = screen.getByRole('link', { name: 'Switch to English' });
+    expect(languageLink).toHaveAttribute('href', '/test-web-001/en/#/');
+  });
+
+  it('should fallback to root locale URL when there is no repository subpath', async () => {
+    setBaseHref('/');
+    history.replaceState({}, '', '/');
+
+    await render(LanguageSwitcherComponent, {
+      inputs: { currentLocale: 'es' },
+    });
+
+    const languageLink = screen.getByRole('link', { name: 'Switch to English' });
+    expect(languageLink).toHaveAttribute('href', '/en/#/');
   });
 });
