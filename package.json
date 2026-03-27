@@ -12,6 +12,9 @@
     "test:coverage": "jest --coverage",
     "lint": "ng lint"
   },
+  "overrides": {
+    "picomatch": "4.0.4"
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "^19.2.0",

@@ -1,6 +1,7 @@
 {
     "chat.tools.terminal.autoApprove": {
         "npx @angular/cli@19": true,
-        "npx jest": true
+        "npx jest": true,
+        "npm audit": true
     }
 }
