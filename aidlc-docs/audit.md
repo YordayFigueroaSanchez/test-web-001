@@ -398,3 +398,11 @@ Estado actualizado en aidlc-state.md. Presentando para aprobación.
 
 ---
 
+## OPERACIONES - Fix Pipeline de Assets en Build
+**Timestamp**: 2026-03-28T02:12:15Z
+**User Input**: "si, revisa"
+**AI Response**: "Se detecto causa raiz del 404 en deploy: angular.json no copiaba src/assets al artifact de build. Se agrego src/assets en assets de build/test y se establecio output=assets/ para alinear con rutas de la app. Build validado con presencia de archivos en dist/.../assets/images/gallery/*.svg."
+**Context**: OPERACIONES - Correccion de configuracion de empaquetado para publicar imagenes de galeria en GitHub Pages.
+
+---
+
