@@ -90,27 +90,27 @@ Fase 2: CONSTRUCCIÓN
 - [x] User Stories (OMITIDO)
   - **Justificación**: Sitio de marketing estático con requisitos claros y bien definidos. Sin múltiples personas de usuario complejas. Los requisitos funcionales ya cubren los escenarios de uso.
 - [x] Planificación del Flujo de Trabajo (COMPLETADO)
-- [ ] Diseño de Aplicación - **EN PROGRESO**
+- [x] Diseño de Aplicación - **COMPLETADO**
   - **Justificación**: Se necesita definir la estructura completa de componentes, servicios, y sus responsabilidades. La arquitectura basada en componentes requiere planificación detallada de: componentes reutilizables (RF-06), layout (RF-01/RF-02), servicios de tema (RF-03), servicio i18n (RF-04), y la organización de carpetas del proyecto.
 - [x] Generación de Unidades (OMITIDO)
   - **Justificación**: Proyecto de alcance moderado (4-6 páginas estáticas) que puede manejarse como una sola unidad de trabajo. No requiere descomposición en múltiples unidades paralelas.
 
 ### 🟢 FASE DE CONSTRUCCIÓN (1 unidad de trabajo)
-- [ ] Diseño Funcional - **EJECUTAR**
+- [x] Diseño Funcional - **COMPLETADO**
   - **Justificación**: Se necesita diseñar la lógica de los componentes: servicio de tema (oscuro/claro con detección de sistema), servicio i18n (cambio de idioma, persistencia), validación de formulario de contacto, y comportamiento de navegación responsiva. Reglas de negocio para accesibilidad WCAG AAA.
-- [ ] Requisitos RNF - **EJECUTAR**
+- [x] Requisitos RNF - **COMPLETADO**
   - **Justificación**: Múltiples RNF significativos: WCAG 2.1 AAA (nivel más exigente), rendimiento Lighthouse 90+, seguridad de headers HTTP, compatibilidad multi-navegador, y pipeline CI/CD. Requiere evaluación detallada.
-- [ ] Diseño RNF - **EJECUTAR**
+- [x] Diseño RNF - **COMPLETADO**
   - **Justificación**: Los requisitos RNF necesitan traducirse en patrones concretos: configuración de Tailwind para accesibilidad, optimización de bundle, configuración de CSP, estrategia de lazy loading, y pipeline de GitHub Actions.
-- [ ] Diseño de Infraestructura - **OMITIDO**
+- [x] Diseño de Infraestructura - **OMITIDO**
   - **Justificación**: Sin infraestructura cloud. El despliegue es GitHub Pages (estático), manejado completamente por GitHub Actions. No hay servicios cloud, balanceadores, bases de datos ni recursos de infraestructura que diseñar.
-- [ ] Generación de Código - **EJECUTAR** (SIEMPRE)
+- [x] Generación de Código - **COMPLETADO**
   - **Justificación**: Implementación del código de la aplicación Angular completa.
-- [ ] Build y Test - **EJECUTAR** (SIEMPRE)
+- [x] Build y Test - **COMPLETADO**
   - **Justificación**: Instrucciones de build, pruebas unitarias, pruebas de componentes y verificación.
 
 ### 🟡 FASE DE OPERACIONES
-- [ ] Operaciones - PLACEHOLDER
+- [ ] Operaciones - EN PROGRESO
   - **Justificación**: Placeholder para futuros flujos de despliegue y monitoreo.
 
 ---

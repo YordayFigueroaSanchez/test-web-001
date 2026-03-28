@@ -42,9 +42,9 @@ npx webpack-bundle-analyzer dist/test-web-001/browser/stats.json
 ```
 
 **Verificar**:
-- [ ] Bundle inicial ≤ 180 KB (gzipped)
+- [x] Bundle inicial ≤ 180 KB (gzipped)
 - [ ] No hay imports duplicados entre chunks lazy
-- [ ] Cada página lazy genera su propio chunk separado
+- [x] Cada página lazy genera su propio chunk separado
 - [ ] No se importan módulos completos innecesariamente
 
 ## Test 2: Lighthouse Audit
@@ -92,7 +92,7 @@ Una vez desplegado en GitHub Pages:
 **Checklist de Verificación**:
 - [ ] FCP < 1.5s (mobile 3G)
 - [ ] LCP < 2.5s (mobile 3G)
-- [ ] CLS < 0.1
+- [x] CLS < 0.1
 - [ ] TTI < 3.0s (mobile 3G)
 
 ## Test 4: Optimización de Assets
@@ -100,22 +100,22 @@ Una vez desplegado en GitHub Pages:
 ### Verificar Fuentes
 
 - [ ] Fuentes WOFF2 self-hosted (no Google Fonts CDN)
-- [ ] `font-display: swap` en @font-face
-- [ ] Fuentes preloaded en `index.html` con `<link rel="preload">`
-- [ ] Máximo 3 variantes de peso (400, 500, 700)
+- [x] `font-display: swap` en @font-face
+- [x] Fuentes preloaded en `index.html` con `<link rel="preload">`
+- [x] Máximo 3 variantes de peso (400, 500, 700)
 
 ### Verificar Imágenes
 
-- [ ] Imágenes con `loading="lazy"` en componentes
+- [x] Imágenes con `loading="lazy"` en componentes
 - [ ] Formato AVIF/WebP preferido (cuando se agreguen imágenes reales)
 - [ ] `<picture>` element para formatos múltiples
 - [ ] Dimensiones explícitas para prevenir CLS
 
 ### Verificar CSS
 
-- [ ] Tailwind CSS purge configurado (`content` en tailwind.config.js)
-- [ ] CSS no utilizado removido en producción
-- [ ] `prefers-reduced-motion` respetado
+- [x] Tailwind CSS purge configurado (`content` en tailwind.config.js)
+- [x] CSS no utilizado removido en producción
+- [x] `prefers-reduced-motion` respetado
 
 ## Test 5: Accesibilidad como Rendimiento
 
@@ -134,11 +134,107 @@ Una vez desplegado en GitHub Pages:
 
 **Checklist WCAG 2.1 AAA**:
 - [ ] Contraste de color ≥ 7:1
-- [ ] Skip navigation funcional
-- [ ] Todos los landmarks ARIA presentes
-- [ ] Navegación completa por teclado
-- [ ] focus-visible en todos los interactivos
-- [ ] Textos alt en todas las imágenes
+- [x] Skip navigation funcional
+- [x] Todos los landmarks ARIA presentes
+- [x] Navegación completa por teclado
+- [x] focus-visible en todos los interactivos
+- [x] Textos alt en todas las imágenes
+
+---
+
+## Evidencia Verificable (Ejecución Local)
+
+**Fecha de verificación**: 2026-03-28 (UTC)
+
+### Comandos Ejecutados
+
+```bash
+npx ng build --configuration production --base-href /test-web-001/ --stats-json
+npm test
+npx lighthouse https://yordayfigueroasanchez.github.io/test-web-001/ --only-categories=performance,accessibility,best-practices,seo --output=json --output-path=./lighthouse-report.json --chrome-flags="--headless --no-sandbox"
+```
+
+### Resultados Relevantes
+
+- Build producción: `Initial total = 85.61 kB (estimated transfer size)` y `stats.json` generado en `dist/test-web-001/stats.json`.
+- Chunks lazy por página confirmados en `stats.json`:
+   - `home.component.ts` → `chunk-X7SJ2JFS.js`
+   - `about.component.ts` → `chunk-FCN6CMNJ.js`
+   - `features.component.ts` → `chunk-CEGICFBW.js`
+   - `gallery.component.ts` → `chunk-TGKMH2DE.js`
+   - `contact.component.ts` → `chunk-6ES3B3DZ.js`
+- Tests automatizados: `26 passed, 26 total` y `109 passed, 109 total`.
+- Lighthouse CLI: no se pudo completar en este entorno por error del launcher/cleanup temporal en Windows (`EPERM` en carpeta temporal de Lighthouse), por lo que FCP/LCP/CLS/TTI quedan pendientes de medición con evidencia reproducible.
+
+### Hallazgos de Configuración
+
+- Presupuestos actuales en `angular.json`:
+   - `initial`: warning `320kB`, error `350kB`
+   - `anyComponentStyle`: warning `4kB`, error `8kB`
+- Fuentes: existen declaraciones `@font-face` y `font-display: swap`, con preloads en `src/index.html`; sin embargo, actualmente no hay archivos fuente reales en `src/assets/fonts/` (solo `README.md`).
+- Imágenes: no hay archivos en `src/assets/images/` al momento de la verificación (directorio vacío), por lo que AVIF/WebP y `<picture>` permanecen pendientes hasta incorporar assets reales.
+
+### Pendientes para Cerrar el Checklist al 100%
+
+- Ejecutar Lighthouse/PageSpeed con reporte exportado y adjuntar métricas FCP/LCP/CLS/TTI.
+- Confirmar ausencia de imports duplicados con análisis dedicado de bundle (por ejemplo, `webpack-bundle-analyzer` o equivalente para esbuild stats).
+- Incorporar fuentes reales WOFF2 en `src/assets/fonts/` para cerrar el ítem de self-hosted fonts con evidencia de archivo.
+- Incorporar imágenes reales optimizadas (AVIF/WebP + fallback `<picture>` + dimensiones explícitas) y volver a validar CLS.
+- Ejecutar auditoría de contraste (WAVE/axe/Lighthouse) para cerrar WCAG AAA contraste `>= 7:1`.
+
+### Plantilla de Evidencia (Lighthouse DevTools / PageSpeed)
+
+Usar esta plantilla para capturar evidencia reproducible y cerrar los checks pendientes de Core Web Vitals.
+
+```md
+## Evidencia CWV - [Fecha UTC]
+
+### Contexto de medición
+- URL: https://yordayfigueroasanchez.github.io/test-web-001/
+- Herramienta: [Lighthouse DevTools | PageSpeed Insights]
+- Estrategia: [Mobile | Desktop]
+- Red/CPU: [Throttling usado]
+- Navegador/Versión: [ej. Chrome 123]
+
+### Scores
+- Performance: [51]
+- Accessibility: [100]
+- Best Practices: [92]
+- SEO: [100]
+
+### Core Web Vitals / Métricas
+- FCP: [3.5s]
+- LCP: [4.6s]
+- CLS: [0]
+- TTI: [valor en s]
+
+### Validación contra umbrales del proyecto
+- FCP < 1.5s: [FAIL]
+- LCP < 2.5s: [FAIL]
+- CLS < 0.1: [PASS]
+- TTI < 3.0s: [FAIL]
+
+### Evidencia adjunta
+- Reporte JSON: [ruta/URL]
+- Reporte HTML o captura: [ruta/URL]
+- Notas de variabilidad entre corridas: [texto]
+
+### Acciones si FAIL
+- [acción 1]
+- [acción 2]
+- [acción 3]
+```
+
+Al completar esta plantilla, actualizar los checkboxes de `FCP`, `LCP`, `CLS` y `TTI` según resultado real de la corrida principal (Mobile).
+
+### Estado Consolidado (corrida capturada en plantilla)
+
+- FCP: `3.5s` -> **FAIL** (umbral `< 1.5s`)
+- LCP: `4.6s` -> **FAIL** (umbral `< 2.5s`)
+- CLS: `0` -> **PASS** (umbral `< 0.1`)
+- TTI: sin valor numérico confirmado en la evidencia -> **PENDIENTE**
+
+Con esta consolidación, solo se marca `CLS` como cumplido en el checklist de Core Web Vitals.
 
 ## Optimización si No Cumple Objetivos
 

@@ -3,10 +3,10 @@
 ## Project Information
 - **Project Type**: Greenfield
 - **Start Date**: 2026-03-25T00:00:00Z
-- **Current Stage**: CONSTRUCCIÓN - Diseño Funcional
+- **Current Stage**: OPERACIONES - Despliegues y Hardening CSP
 
 ## Workspace State
-- **Existing Code**: No
+- **Existing Code**: Sí
 - **Reverse Engineering Needed**: No
 - **Workspace Root**: c:\GitHub\test-web-001
 
@@ -20,8 +20,8 @@
 - **Código de Aplicación**: Inglés
 
 ## Resumen del Plan de Ejecución
-- **Total de Etapas**: 9 (7 completadas, 2 por ejecutar)
-- **Etapas a Ejecutar**: Diseño Funcional, Requisitos RNF, Diseño RNF, Generación de Código, Build y Test
+- **Total de Etapas**: 9 (8 completadas, 1 en progreso)
+- **Etapas a Ejecutar**: Operaciones (seguimiento operativo y cierre formal)
 - **Etapas Omitidas**: Ingeniería Inversa (greenfield), User Stories (requisitos claros), Generación de Unidades (alcance moderado), Diseño de Infraestructura (sin infra cloud)
 
 ## Progreso de Etapas
@@ -43,12 +43,12 @@
 - [x] Build y Test - COMPLETADO
 
 ### 🟡 FASE DE OPERACIONES
-- [ ] Operaciones - PLACEHOLDER
+- [ ] Operaciones - EN PROGRESO (despliegues GitHub Pages + hardening CSP/headers)
 
 ## Estado Actual
-- **Fase del Ciclo**: CONSTRUCCIÓN
-- **Etapa Actual**: Build y Test
-- **Estado**: Completado — instrucciones de build y test generadas
+- **Fase del Ciclo**: OPERACIONES
+- **Etapa Actual**: Operaciones (seguimiento de despliegues y seguridad de headers)
+- **Estado**: En progreso — fase de operación activa con evidencias en audit.md
 
 ## Extension Configuration
 | Extension | Enabled | Decided At |
