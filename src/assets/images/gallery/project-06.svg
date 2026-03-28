@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Project Zeta</title>
+  <desc id="desc">Gradient showcase card for marketing site</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0%" stop-color="#0c4a6e" />
+      <stop offset="100%" stop-color="#14b8a6" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="1200" fill="url(#bg)" />
+  <path d="M120 930 L300 500 L460 750 L620 420 L800 760 L990 350 L1080 930 Z" fill="#ffffff" opacity="0.24" />
+  <text x="130" y="210" fill="#ffffff" font-family="Arial, sans-serif" font-size="96" font-weight="700">Project Zeta</text>
+  <text x="130" y="300" fill="#ccfbf1" font-family="Arial, sans-serif" font-size="44">Marketing site</text>
+</svg>

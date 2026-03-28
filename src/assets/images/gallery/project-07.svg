@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Project Eta</title>
+  <desc id="desc">Gradient showcase card for SaaS platform</desc>
+  <defs>
+    <linearGradient id="bg" x1="1" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#312e81" />
+      <stop offset="100%" stop-color="#2563eb" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="1200" fill="url(#bg)" />
+  <rect x="120" y="150" width="960" height="900" rx="34" fill="#ffffff" opacity="0.09" />
+  <circle cx="300" cy="360" r="70" fill="#93c5fd" opacity="0.45" />
+  <circle cx="510" cy="360" r="70" fill="#bfdbfe" opacity="0.45" />
+  <circle cx="720" cy="360" r="70" fill="#dbeafe" opacity="0.45" />
+  <text x="170" y="770" fill="#ffffff" font-family="Arial, sans-serif" font-size="96" font-weight="700">Project Eta</text>
+  <text x="170" y="855" fill="#dbeafe" font-family="Arial, sans-serif" font-size="44">SaaS platform</text>
+</svg>

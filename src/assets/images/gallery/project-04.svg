@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Project Delta</title>
+  <desc id="desc">Gradient showcase card for mobile application</desc>
+  <defs>
+    <linearGradient id="bg" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1f2937" />
+      <stop offset="100%" stop-color="#db2777" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="1200" fill="url(#bg)" />
+  <rect x="430" y="150" width="340" height="900" rx="54" fill="#ffffff" opacity="0.16" />
+  <rect x="465" y="240" width="270" height="610" rx="24" fill="#fdf2f8" opacity="0.2" />
+  <circle cx="600" cy="920" r="24" fill="#fbcfe8" opacity="0.7" />
+  <text x="130" y="210" fill="#ffffff" font-family="Arial, sans-serif" font-size="96" font-weight="700">Project Delta</text>
+  <text x="130" y="300" fill="#fbcfe8" font-family="Arial, sans-serif" font-size="44">Mobile application</text>
+</svg>

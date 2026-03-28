@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Project Beta</title>
+  <desc id="desc">Gradient showcase card for e-commerce platform</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0%" stop-color="#111827" />
+      <stop offset="100%" stop-color="#7c3aed" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="1200" fill="url(#bg)" />
+  <path d="M0 930 C220 820 460 980 700 860 C900 760 1050 800 1200 730 L1200 1200 L0 1200 Z" fill="#f59e0b" opacity="0.25" />
+  <rect x="120" y="130" width="960" height="940" rx="40" fill="#ffffff" opacity="0.08" />
+  <text x="170" y="250" fill="#ffffff" font-family="Arial, sans-serif" font-size="96" font-weight="700">Project Beta</text>
+  <text x="170" y="345" fill="#ddd6fe" font-family="Arial, sans-serif" font-size="44">E-commerce platform</text>
+</svg>

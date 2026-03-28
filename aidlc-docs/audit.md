@@ -334,3 +334,59 @@ Estado actualizado en aidlc-state.md. Presentando para aprobación.
 
 ---
 
+## OPERACIONES - Sincronizacion de Estado AI-DLC
+**Timestamp**: 2026-03-28T01:42:42Z
+**User Input**: "1"
+**AI Response**: "Se sincronizo aidlc-state.md para reflejar la fase OPERACIONES en curso: Current Stage actualizado, Existing Code=Si, resumen de etapas ajustado a 8 completadas/1 en progreso, y Estado Actual actualizado a Operaciones en progreso."
+**Context**: OPERACIONES - Mantenimiento de trazabilidad y consistencia entre estado maestro y evidencia en audit.md.
+
+---
+
+## OPERACIONES - Alineacion de Checkboxes Historicos
+**Timestamp**: 2026-03-28T01:43:43Z
+**User Input**: "2"
+**AI Response**: "Se actualizo inception/plans/execution-plan.md para alinear checkboxes y estados con la ejecucion real: Diseño de Aplicacion y todas las etapas de Construccion marcadas como completadas, Diseño de Infraestructura marcado como omitido-completado, y Operaciones actualizado a en progreso."
+**Context**: OPERACIONES - Correccion de consistencia documental entre plan historico y estado maestro.
+
+---
+
+## OPERACIONES - Evidencia Verificable de Performance
+**Timestamp**: 2026-03-28T01:49:28Z
+**User Input**: "Ejecutar opción 3 para convertir el checklist de performance en evidencia verificable (qué ya cumple, qué falta y con comandos/resultados)."
+**AI Response**: "Se ejecutaron validaciones objetivas (build production con stats-json, test suite completa y verificacion de configuracion), se actualizaron checkboxes en construction/build-and-test/performance-test-instructions.md con estado real (cumple/pendiente), y se agrego una seccion de evidencia con comandos, resultados y pendientes concretos para cierre al 100%."
+**Context**: OPERACIONES - Auditoria y cierre progresivo de checklist de performance con trazabilidad reproducible.
+
+---
+
+## OPERACIONES - Lighthouse Local (Intento de Remediacion)
+**Timestamp**: 2026-03-28T01:52:47Z
+**User Input**: "1"
+**AI Response**: "Se ejecuto la opcion 1 para corregir Lighthouse local: deteccion de browser del sistema (no disponible), aprovisionamiento de Chromium via Playwright, y reintento de Lighthouse con ruta de chrome explicita y TEMP local. El proceso sigue fallando por error EPERM durante cleanup de chrome-launcher (rmSync de carpeta lighthouse.*), por lo que no fue posible generar lighthouse-report.report.json en este entorno."
+**Context**: OPERACIONES - Bloqueo de tooling local (Windows permissions/runtime) con recomendacion de continuar medicion mediante DevTools Lighthouse/PageSpeed en entorno alterno.
+
+---
+
+## OPERACIONES - Plantilla de Evidencia CWV
+**Timestamp**: 2026-03-28T01:53:57Z
+**User Input**: "1"
+**AI Response**: "Se agrego en construction/build-and-test/performance-test-instructions.md una plantilla estructurada para evidenciar resultados de Lighthouse/PageSpeed (contexto de medicion, scores, FCP/LCP/CLS/TTI, criterio PASS/FAIL y adjuntos), orientada a cerrar los checks pendientes de Core Web Vitals."
+**Context**: OPERACIONES - Preparacion de evidencia verificable para cierre documental de performance.
+
+---
+
+## OPERACIONES - Consolidacion de Evidencia CWV
+**Timestamp**: 2026-03-28T02:03:54Z
+**User Input**: "1"
+**AI Response**: "Se consolido la evidencia cargada en la plantilla de CWV y se actualizo el checklist: CLS marcado como cumplido (0 < 0.1), FCP y LCP permanecen en fail segun valores capturados (3.5s y 4.6s), y TTI queda pendiente por falta de valor numerico confirmado."
+**Context**: OPERACIONES - Actualizacion de estado verificable del checklist de Core Web Vitals.
+
+---
+
+## OPERACIONES - Imagenes para Deploy
+**Timestamp**: 2026-03-28T02:09:00Z
+**User Input**: "Agregar imagenes para que se visualizen en el deploy"
+**AI Response**: "Se corrigieron rutas de galeria para usar assets SVG existentes y se crearon 8 imagenes placeholder en src/assets/images/gallery (project-01.svg a project-08.svg). Se ejecuto build de produccion con exito para validar que el deploy mostrara imagenes sin errores de ruta."
+**Context**: OPERACIONES - Correccion de assets faltantes para visualizacion en GitHub Pages.
+
+---
+

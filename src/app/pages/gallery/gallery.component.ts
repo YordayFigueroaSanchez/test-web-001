@@ -105,14 +105,14 @@ export class GalleryComponent implements OnInit {
   private readonly seoService = inject(SeoService);
 
   readonly images = signal<GalleryImage[]>([
-    { id: '1', src: 'assets/images/gallery/project-01.jpg', alt: 'Project Alpha - Modern web application' },
-    { id: '2', src: 'assets/images/gallery/project-02.jpg', alt: 'Project Beta - E-commerce platform' },
-    { id: '3', src: 'assets/images/gallery/project-03.jpg', alt: 'Project Gamma - Dashboard design' },
-    { id: '4', src: 'assets/images/gallery/project-04.jpg', alt: 'Project Delta - Mobile application' },
-    { id: '5', src: 'assets/images/gallery/project-05.jpg', alt: 'Project Epsilon - Brand identity' },
-    { id: '6', src: 'assets/images/gallery/project-06.jpg', alt: 'Project Zeta - Marketing site' },
-    { id: '7', src: 'assets/images/gallery/project-07.jpg', alt: 'Project Eta - SaaS platform' },
-    { id: '8', src: 'assets/images/gallery/project-08.jpg', alt: 'Project Theta - Portfolio site' },
+    { id: '1', src: 'assets/images/gallery/project-01.svg', alt: 'Project Alpha - Modern web application' },
+    { id: '2', src: 'assets/images/gallery/project-02.svg', alt: 'Project Beta - E-commerce platform' },
+    { id: '3', src: 'assets/images/gallery/project-03.svg', alt: 'Project Gamma - Dashboard design' },
+    { id: '4', src: 'assets/images/gallery/project-04.svg', alt: 'Project Delta - Mobile application' },
+    { id: '5', src: 'assets/images/gallery/project-05.svg', alt: 'Project Epsilon - Brand identity' },
+    { id: '6', src: 'assets/images/gallery/project-06.svg', alt: 'Project Zeta - Marketing site' },
+    { id: '7', src: 'assets/images/gallery/project-07.svg', alt: 'Project Eta - SaaS platform' },
+    { id: '8', src: 'assets/images/gallery/project-08.svg', alt: 'Project Theta - Portfolio site' },
   ]);
 
   readonly lightboxOpen = signal(false);
