@@ -29,12 +29,17 @@ import { GalleryImage } from '../../shared/interfaces';
               (click)="openLightbox(i)"
               [attr.aria-label]="'View ' + image.alt"
             >
-              <img
-                [src]="image.src"
-                [alt]="image.alt"
-                loading="lazy"
-                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-              />
+              <picture>
+                <source [srcset]="image.src" type="image/webp" />
+                <img
+                  [src]="getSvgFallback(image.src)"
+                  [alt]="image.alt"
+                  [attr.width]="image.width"
+                  [attr.height]="image.height"
+                  loading="lazy"
+                  class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                />
+              </picture>
               <div
                 class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 flex items-end"
                 aria-hidden="true"
@@ -79,11 +84,16 @@ import { GalleryImage } from '../../shared/interfaces';
             ‹
           </button>
 
-          <img
-            [src]="currentImage().src"
-            [alt]="currentImage().alt"
-            class="w-full max-h-[80vh] object-contain rounded-lg"
-          />
+          <picture>
+            <source [srcset]="currentImage().src" type="image/webp" />
+            <img
+              [src]="getSvgFallback(currentImage().src)"
+              [alt]="currentImage().alt"
+              [attr.width]="currentImage().width"
+              [attr.height]="currentImage().height"
+              class="w-full max-h-[80vh] object-contain rounded-lg"
+            />
+          </picture>
 
           <p class="text-white text-center mt-4 text-sm">
             {{ currentImage().alt }} — {{ selectedIndex() + 1 }} / {{ images().length }}
@@ -105,14 +115,14 @@ export class GalleryComponent implements OnInit {
   private readonly seoService = inject(SeoService);
 
   readonly images = signal<GalleryImage[]>([
-    { id: '1', src: 'assets/images/gallery/project-01.svg', alt: 'Project Alpha - Modern web application' },
-    { id: '2', src: 'assets/images/gallery/project-02.svg', alt: 'Project Beta - E-commerce platform' },
-    { id: '3', src: 'assets/images/gallery/project-03.svg', alt: 'Project Gamma - Dashboard design' },
-    { id: '4', src: 'assets/images/gallery/project-04.svg', alt: 'Project Delta - Mobile application' },
-    { id: '5', src: 'assets/images/gallery/project-05.svg', alt: 'Project Epsilon - Brand identity' },
-    { id: '6', src: 'assets/images/gallery/project-06.svg', alt: 'Project Zeta - Marketing site' },
-    { id: '7', src: 'assets/images/gallery/project-07.svg', alt: 'Project Eta - SaaS platform' },
-    { id: '8', src: 'assets/images/gallery/project-08.svg', alt: 'Project Theta - Portfolio site' },
+    { id: '1', src: 'assets/images/gallery/project-01.webp', alt: 'Project Alpha - Modern web application', width: 1200, height: 1200 },
+    { id: '2', src: 'assets/images/gallery/project-02.webp', alt: 'Project Beta - E-commerce platform', width: 1200, height: 1200 },
+    { id: '3', src: 'assets/images/gallery/project-03.webp', alt: 'Project Gamma - Dashboard design', width: 1200, height: 1200 },
+    { id: '4', src: 'assets/images/gallery/project-04.webp', alt: 'Project Delta - Mobile application', width: 1200, height: 1200 },
+    { id: '5', src: 'assets/images/gallery/project-05.webp', alt: 'Project Epsilon - Brand identity', width: 1200, height: 1200 },
+    { id: '6', src: 'assets/images/gallery/project-06.webp', alt: 'Project Zeta - Marketing site', width: 1200, height: 1200 },
+    { id: '7', src: 'assets/images/gallery/project-07.webp', alt: 'Project Eta - SaaS platform', width: 1200, height: 1200 },
+    { id: '8', src: 'assets/images/gallery/project-08.webp', alt: 'Project Theta - Portfolio site', width: 1200, height: 1200 },
   ]);
 
   readonly lightboxOpen = signal(false);
@@ -159,5 +169,9 @@ export class GalleryComponent implements OnInit {
         this.closeLightbox();
         break;
     }
+  }
+
+  getSvgFallback(src: string): string {
+    return src.endsWith('.webp') ? src.replace(/\.webp$/i, '.svg') : src;
   }
 }

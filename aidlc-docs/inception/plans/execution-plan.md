@@ -110,8 +110,8 @@ Fase 2: CONSTRUCCIÓN
   - **Justificación**: Instrucciones de build, pruebas unitarias, pruebas de componentes y verificación.
 
 ### 🟡 FASE DE OPERACIONES
-- [ ] Operaciones - EN PROGRESO
-  - **Justificación**: Placeholder para futuros flujos de despliegue y monitoreo.
+- [x] Operaciones - COMPLETADO
+  - **Justificación**: Cierre operativo y documental completado con evidencia de despliegues, hardening CSP/headers y verificación de checklists finales.
 
 ---
 

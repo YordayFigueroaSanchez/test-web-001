@@ -422,3 +422,107 @@ Estado actualizado en aidlc-state.md. Presentando para aprobación.
 
 ---
 
+## OPERACIONES - Auditoria de Estado Documental AI-DLC
+**Timestamp**: 2026-03-29T00:58:24Z
+**User Input**: "Using AI-DLC, realiza una auditoría del estado actual de la documentación en la carpeta aidlc-docs/ y revisa el archivo audit.md. Identifica en qué fase (Inception, Construction u Operations) y en qué etapa específica nos encontramos. Genera un resumen del progreso basado en los 'checkboxes' completados y preséntame una lista numerada de las tareas pendientes para que pueda seleccionar con cuál de ellas vamos a continuar."
+**AI Response**: "Se revisaron aidlc-state.md, audit.md y los planes/instrucciones con checkboxes. Estado identificado: FASE OPERACIONES, etapa Operaciones en progreso. Se consolidaron checkboxes pendientes en aidlc-docs para generar lista numerada de tareas por priorizacion."
+**Context**: OPERACIONES - Auditoria de trazabilidad documental y priorizacion de pendientes.
+
+---
+
+## OPERACIONES - Verificacion de Duplicados en Chunks Lazy
+**Timestamp**: 2026-03-29T01:01:21Z
+**User Input**: "2"
+**AI Response**: "Se ejecuto build de produccion con stats (`npx ng build --configuration production --base-href /test-web-001/ --stats-json`) y analisis de `dist/test-web-001/stats.json` (formato esbuild). Resultado: 5 entry chunks lazy de paginas y 0 modulos embebidos duplicados entre ellos. Se marco como completado el checkbox 'No hay imports duplicados entre chunks lazy' y se actualizo la seccion de evidencia en performance-test-instructions.md."
+**Context**: OPERACIONES - Cierre de pendiente #2 del checklist de rendimiento.
+
+---
+
+## OPERACIONES - Verificacion de Imports de Modulos Completos
+**Timestamp**: 2026-03-29T01:02:36Z
+**User Input**: "1"
+**AI Response**: "Se completo la verificacion de 'No se importan modulos completos innecesariamente' combinando evidencia de build/stats y revision de imports en codigo fuente. Resultado: no se detectaron imports namespace (`import * as ...`) ni imports de librerias de alto peso no requeridas en `src/**` (sin `lodash`, `moment` ni `@angular/material`), y la superficie de dependencias directas se mantiene alineada al stack definido. Se marco el checkbox como completado y se documento la evidencia en performance-test-instructions.md."
+**Context**: OPERACIONES - Cierre de pendiente #1 del checklist de rendimiento.
+
+---
+
+## OPERACIONES - Validacion de FCP (Core Web Vitals)
+**Timestamp**: 2026-03-29T01:04:32Z
+**User Input**: "1"
+**AI Response**: "Se ejecuto la validacion del objetivo FCP con Lighthouse local contra la URL desplegada. Aunque el proceso termina con error `EPERM` durante el cleanup de carpeta temporal en Windows, el reporte `lighthouse-report.json` se genero correctamente y se extrajeron metricas: FCP=1.38s, LCP=1.73s, TTI=1.73s, CLS=0.0000. Se marco como completado el checkbox de FCP (<1.5s) y se actualizo la evidencia en performance-test-instructions.md."
+**Context**: OPERACIONES - Cierre de pendiente FCP del checklist de rendimiento.
+
+---
+
+## OPERACIONES - Validacion de LCP (Core Web Vitals)
+**Timestamp**: 2026-03-29T01:05:13Z
+**User Input**: "1"
+**AI Response**: "Se reutilizo la evidencia de `lighthouse-report.json` para validar LCP con resultado `LCP=1.73s`, cumpliendo el umbral `< 2.5s`. Se actualizo el checkbox de LCP como completado y se agrego nota de actualizacion en performance-test-instructions.md."
+**Context**: OPERACIONES - Cierre de pendiente LCP del checklist de rendimiento.
+
+---
+
+## OPERACIONES - Validacion de TTI (Core Web Vitals)
+**Timestamp**: 2026-03-29T01:05:58Z
+**User Input**: "1"
+**AI Response**: "Se valido TTI a partir de `lighthouse-report.json` con resultado `TTI=1.73s`, cumpliendo el umbral `< 3.0s`. Se marco el checkbox de TTI como completado y se actualizo el Estado Consolidado de Core Web Vitals para reflejar la corrida local vigente (FCP/LCP/CLS/TTI en PASS)."
+**Context**: OPERACIONES - Cierre de pendiente TTI del checklist de rendimiento.
+
+---
+
+## OPERACIONES - Fuentes WOFF2 Self-Hosted
+**Timestamp**: 2026-03-29T01:06:52Z
+**User Input**: "1"
+**AI Response**: "Se completo el pendiente de fuentes self-hosted instalando una fuente open-source (`@fontsource/inter`), copiando archivos reales WOFF2 (pesos 400/500/700) a `src/assets/fonts/` con nombres canonicos (`primary-regular.woff2`, `primary-medium.woff2`, `primary-bold.woff2`), corrigiendo rutas de preload en `src/index.html`, y validando build de produccion exitoso. Se marco el checkbox correspondiente como completado en performance-test-instructions.md."
+**Context**: OPERACIONES - Cierre de pendiente de fuentes WOFF2 self-hosted.
+
+---
+
+## OPERACIONES - Formato de Imagen Preferido (WebP)
+**Timestamp**: 2026-03-29T01:08:39Z
+**User Input**: "1"
+**AI Response**: "Se completo el pendiente de formato de imagen preferido generando archivos WebP reales para galeria (`project-01.webp` a `project-08.webp`) a partir de SVG, actualizando referencias de `gallery.component.ts` para consumir `.webp` por defecto, y validando build de produccion exitoso. Se marco como completado el checkbox de AVIF/WebP preferido en performance-test-instructions.md."
+**Context**: OPERACIONES - Cierre de pendiente AVIF/WebP preferido para imagenes reales.
+
+---
+
+## OPERACIONES - Elemento Picture para Formatos Multiples
+**Timestamp**: 2026-03-29T01:09:12Z
+**User Input**: "1"
+**AI Response**: "Se completo el pendiente de `<picture>` implementando formato multiple en galeria y lightbox: `source` WebP y fallback SVG en `img`. Se actualizo `gallery.component.ts`, se marco el checkbox correspondiente en performance-test-instructions.md y se valido build de produccion exitoso."
+**Context**: OPERACIONES - Cierre de pendiente `<picture>` para imagenes de galeria.
+
+---
+
+## OPERACIONES - Dimensiones Explicitas en Imagenes
+**Timestamp**: 2026-03-29T01:12:01Z
+**User Input**: "1"
+**AI Response**: "Se completo el pendiente de dimensiones explicitas agregando atributos `width` y `height` en imagenes de galeria y lightbox, con metadatos por imagen (`1200x1200`) en `gallery.component.ts`. Se actualizo el checkbox correspondiente en performance-test-instructions.md y se valido build de produccion exitoso."
+**Context**: OPERACIONES - Cierre de pendiente de estabilidad visual (CLS) por dimensiones de imagen.
+
+---
+
+## OPERACIONES - Validacion de Contraste
+**Timestamp**: 2026-03-29T01:13:20Z
+**User Input**: "1"
+**AI Response**: "Se ejecuto auditoria de accesibilidad con Lighthouse (`lighthouse-a11y.json`) y se extrajo evidencia del audit `color-contrast`: `score=1`, `items=0`, `accessibility score=1`. Con base en la evidencia automatizada, se marco como completado el checkbox de contraste en performance-test-instructions.md y se actualizo la seccion de resultados relevantes."
+**Context**: OPERACIONES - Cierre de pendiente de contraste del checklist de accesibilidad/rendimiento.
+
+---
+
+## OPERACIONES - Cierre Formal en Estado Maestro
+**Timestamp**: 2026-03-29T01:14:24Z
+**User Input**: "1"
+**AI Response**: "Se realizo el cierre formal de la fase de Operaciones en `aidlc-state.md`: checkbox de Operaciones marcado como completado, resumen actualizado a 9/9 etapas completadas, y estado actual cambiado a workflow completado."
+**Context**: OPERACIONES - Cierre documental de estado maestro AI-DLC.
+
+---
+
+## OPERACIONES - Cierre Formal en Plan Ejecutivo
+**Timestamp**: 2026-03-29T01:14:55Z
+**User Input**: "1"
+**AI Response**: "Se cerro el ultimo pendiente del plan ejecutivo en `inception/plans/execution-plan.md`, marcando la fase de Operaciones como completada y actualizando su justificacion de cierre operativo/documental."
+**Context**: OPERACIONES - Cierre final de checkboxes AI-DLC en plan de ejecucion.
+
+---
+
