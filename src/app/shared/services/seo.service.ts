@@ -1,4 +1,5 @@
 import { Injectable, inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 import { Title, Meta } from '@angular/platform-browser';
 import { PageSeoConfig, OpenGraphData, MetaTag } from '../interfaces';
 
@@ -6,6 +7,7 @@ import { PageSeoConfig, OpenGraphData, MetaTag } from '../interfaces';
 export class SeoService {
   private readonly title = inject(Title);
   private readonly meta = inject(Meta);
+  private readonly document = inject(DOCUMENT);
 
   updateTitle(pageTitle: string): void {
     this.title.setTitle(pageTitle);
@@ -40,13 +42,51 @@ export class SeoService {
     }
   }
 
+  setCanonicalUrl(url: string): void {
+    let canonical = this.document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
+    if (!canonical) {
+      canonical = this.document.createElement('link');
+      canonical.setAttribute('rel', 'canonical');
+      this.document.head.appendChild(canonical);
+    }
+    canonical.setAttribute('href', url);
+  }
+
+  private resolveCanonicalUrl(config: PageSeoConfig): string {
+    if (config.canonicalUrl) {
+      return config.canonicalUrl;
+    }
+
+    const win = this.document.defaultView;
+    if (!win) {
+      return '/';
+    }
+
+    if (config.route) {
+      const normalizedRoute = config.route.startsWith('/') ? config.route : `/${config.route}`;
+      return `${win.location.origin}${win.location.pathname}#${normalizedRoute}`;
+    }
+
+    return win.location.href;
+  }
+
   setPageSeo(config: PageSeoConfig): void {
+    const canonicalUrl = this.resolveCanonicalUrl(config);
+
     this.updateTitle(config.title);
     this.updateMetaTags([{ name: 'description', content: config.description }]);
+    this.setCanonicalUrl(canonicalUrl);
 
-    if (config.ogData) {
-      this.updateOgTags(config.ogData);
-    }
+    const ogData: OpenGraphData = {
+      title: config.ogData?.title ?? config.title,
+      description: config.ogData?.description ?? config.description,
+      image: config.ogData?.image,
+      url: config.ogData?.url ?? canonicalUrl,
+      type: config.ogData?.type ?? 'website',
+      locale: config.ogData?.locale ?? 'es_ES',
+    };
+    this.updateOgTags(ogData);
+
     if (config.additionalMeta) {
       this.updateMetaTags(config.additionalMeta);
     }

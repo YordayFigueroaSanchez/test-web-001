@@ -1,21 +1,24 @@
-:root {
-  --color-bg-primary: theme('colors.white');
-  --color-bg-secondary: theme('colors.gray.50');
-  --color-bg-tertiary: theme('colors.gray.100');
-  --color-text-primary: theme('colors.gray.900');
-  --color-text-secondary: theme('colors.gray.600');
-  --color-text-muted: theme('colors.gray.400');
-  --color-border: theme('colors.gray.200');
-  --color-border-light: theme('colors.gray.100');
-}
+// =============================================================================
+// Aura Studio — Semantic CSS Custom Properties
+// Maps design token names to component-facing aliases.
+// These are available globally via :root and do not need @theme registration.
+// =============================================================================
 
-.dark {
-  --color-bg-primary: theme('colors.gray.900');
-  --color-bg-secondary: theme('colors.gray.800');
-  --color-bg-tertiary: theme('colors.gray.700');
-  --color-text-primary: theme('colors.gray.50');
-  --color-text-secondary: theme('colors.gray.400');
-  --color-text-muted: theme('colors.gray.500');
-  --color-border: theme('colors.gray.700');
-  --color-border-light: theme('colors.gray.800');
+// Light mode (default)
+:root {
+  --color-bg-primary:    var(--color-surface-primary);
+  --color-bg-secondary:  var(--color-surface-secondary);
+  --color-bg-tertiary:   var(--color-surface-tertiary);
+  --color-bg-elevated:   var(--color-surface-elevated);
+
+  --color-text-base:     var(--color-text-primary);
+  --color-text-sub:      var(--color-text-secondary);
+  --color-text-hint:     var(--color-text-muted);
+
+  --color-accent-base:   var(--color-gold-400);
+  --color-accent-hover:  var(--color-gold-300);
+  --color-accent-active: var(--color-gold-500);
+
+  --color-border:        var(--color-border-default);
+  --color-border-light:  var(--color-border-subtle);
 }

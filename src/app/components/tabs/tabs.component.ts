@@ -1,12 +1,14 @@
 import { Component, input, signal, OnInit } from '@angular/core';
 import { TabItem } from '../../shared/interfaces';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-tabs',
   standalone: true,
+  imports: [CommonModule],
   template: `
-    <div>
-      <div role="tablist" [attr.aria-label]="ariaLabel()" class="flex border-b border-gray-200 dark:border-gray-700">
+    <div class="p-tabs p-tabs-scrollable">
+      <div role="tablist" [attr.aria-label]="ariaLabel()" class="p-tabs-nav">
         @for (tab of tabs(); track tab.id; let i = $index) {
           <button
             type="button"
@@ -17,13 +19,12 @@ import { TabItem } from '../../shared/interfaces';
             [tabindex]="activeTabId() === tab.id ? 0 : -1"
             (click)="selectTab(tab.id)"
             (keydown)="onKeydown($event, i)"
-            class="px-4 py-3 text-sm font-medium transition-colors duration-200
-                   focus-visible:outline-2 focus-visible:outline-primary-500"
-            [class]="activeTabId() === tab.id
-              ? 'border-b-2 border-primary-600 text-primary-600 dark:border-primary-400 dark:text-primary-400'
-              : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'"
+            class="p-tab-header"
+            [class.p-tab-header-active]="activeTabId() === tab.id"
           >
-            {{ tab.label }}
+            <a href="javascript:void(0)" class="p-tab-header-link">
+              {{ tab.label }}
+            </a>
           </button>
         }
       </div>
@@ -34,7 +35,7 @@ import { TabItem } from '../../shared/interfaces';
             [id]="'tabpanel-' + tab.id"
             [attr.aria-labelledby]="'tab-' + tab.id"
             tabindex="0"
-            class="p-4 text-gray-700 dark:text-gray-300"
+            class="p-tab-panel p-tab-panel-active"
           >
             {{ tab.content }}
           </div>
@@ -42,6 +43,38 @@ import { TabItem } from '../../shared/interfaces';
       }
     </div>
   `,
+  styles: [`
+    :host ::ng-deep {
+      .p-tab-header {
+        padding: var(--p-tab-header-padding, 0.75rem 1rem);
+        border-bottom: 2px solid transparent;
+        transition: all var(--p-transition-duration, 200ms);
+      }
+
+      .p-tab-header-active {
+        border-bottom-color: var(--p-primary-color, #C9A84C);
+        color: var(--p-primary-color, #C9A84C);
+      }
+
+      .p-tab-header:not(.p-tab-header-active) {
+        color: var(--p-text-color-secondary);
+        cursor: pointer;
+
+        &:hover {
+          color: var(--p-text-color);
+        }
+      }
+
+      .p-tab-panel {
+        padding: 1rem;
+        display: none;
+      }
+
+      .p-tab-panel-active {
+        display: block;
+      }
+    }
+  `],
 })
 export class TabsComponent implements OnInit {
   readonly tabs = input<TabItem[]>([]);

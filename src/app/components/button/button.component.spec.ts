@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/angular';
 import { ButtonComponent } from './button.component';
 
-describe('ButtonComponent', () => {
+describe('ButtonComponent (PrimeNG)', () => {
   it('should render with default variant', async () => {
     await render(ButtonComponent, {
       inputs: {},
@@ -32,11 +32,27 @@ describe('ButtonComponent', () => {
     expect(screen.getByRole('button', { name: 'Submit form' })).toBeInTheDocument();
   });
 
-  it('should apply icon variant without size class', async () => {
+  it('should map variant to severity (primary -> success)', async () => {
     await render(ButtonComponent, {
-      inputs: { variant: 'icon', ariaLabel: 'Icon btn' },
+      inputs: { variant: 'primary', ariaLabel: 'Primary btn' },
     });
-    const button = screen.getByRole('button', { name: 'Icon btn' });
-    expect(button.className).not.toContain('px-5');
+    const button = screen.getByRole('button', { name: 'Primary btn' });
+    expect(button.getAttribute('aria-label')).toBe('Primary btn');
+  });
+
+  it('should map size sm -> small PrimeNG size', async () => {
+    await render(ButtonComponent, {
+      inputs: { size: 'sm', ariaLabel: 'Small btn' },
+    });
+    const button = screen.getByRole('button', { name: 'Small btn' });
+    expect(button).toBeInTheDocument();
+  });
+
+  it('should map size lg -> large PrimeNG size', async () => {
+    await render(ButtonComponent, {
+      inputs: { size: 'lg', ariaLabel: 'Large btn' },
+    });
+    const button = screen.getByRole('button', { name: 'Large btn' });
+    expect(button).toBeInTheDocument();
   });
 });

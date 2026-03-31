@@ -2,6 +2,34 @@
     "chat.tools.terminal.autoApprove": {
         "npx @angular/cli@19": true,
         "npx jest": true,
-        "npm audit": true
+        "npm audit": true,
+        "/^node -e \"const s=require\\('\\./dist/test-web-001/stats\\.json'\\); const outs=s\\.outputs; const rev=new Map\\(\\); for\\(const \\[file,meta\\] of Object\\.entries\\(outs\\)\\)\\{ for\\(const imp of \\(meta\\.imports\\|\\|\\[\\]\\)\\)\\{ if\\(!rev\\.has\\(imp\\.path\\)\\) rev\\.set\\(imp\\.path,\\[\\]\\); rev\\.get\\(imp\\.path\\)\\.push\\(\\{from:file,kind:imp\\.kind\\}\\); \\} \\} const pageChunks=Object\\.entries\\(outs\\)\\.filter\\(\\(\\[f,m\\]\\)=>m\\.entryPoint&&m\\.entryPoint\\.includes\\('src/app/pages/'\\)\\)\\.map\\(\\(\\[f,m\\]\\)=>\\(\\{file:f,entry:m\\.entryPoint,importers:rev\\.get\\(f\\)\\|\\|\\[\\]\\}\\)\\); console\\.log\\('PAGE_CHUNKS',pageChunks\\.length\\); pageChunks\\.forEach\\(c=>\\{console\\.log\\(c\\.file,'<=',c\\.entry\\); console\\.log\\('  importers',c\\.importers\\);\\}\\); const dyn=\\[\\]; for\\(const \\[f,m\\] of Object\\.entries\\(outs\\)\\)\\{ for\\(const imp of \\(m\\.imports\\|\\|\\[\\]\\)\\)\\{ if\\(imp\\.kind==='dynamic-import'\\) dyn\\.push\\(\\{from:f,to:imp\\.path\\}\\); \\} \\} console\\.log\\('DYNAMIC_IMPORTS',dyn\\.length\\); console\\.log\\(dyn\\);\"$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "Get-Command": true,
+        "npx ng": true,
+        "Test-Path": true,
+        "/^node -e \"const fs=require\\('fs'\\);const p='dist/test-web-001/stats\\.json';const s=JSON\\.parse\\(fs\\.readFileSync\\(p,'utf8'\\)\\);const chunks=s\\.chunks\\|\\|\\[\\];const lazyIds=new Set\\(chunks\\.filter\\(c=>!c\\.initial\\)\\.map\\(c=>c\\.id\\)\\);const lazyNamed=chunks\\.filter\\(c=>!c\\.initial&&c\\.names&&c\\.names\\.length\\)\\.map\\(c=>\\(\\{id:c\\.id,name:c\\.names\\[0\\]\\}\\)\\);const mods=s\\.modules\\|\\|\\[\\];const dups=\\[\\];for\\(const m of mods\\)\\{const ids=\\(m\\.chunks\\|\\|\\[\\]\\)\\.filter\\(id=>lazyIds\\.has\\(id\\)\\);const uniq=\\[\\.\\.\\.new Set\\(ids\\)\\];if\\(uniq\\.length>1\\)\\{dups\\.push\\(\\{name:m\\.name\\|\\|m\\.identifier\\|\\|'\\(unknown\\)',count:uniq\\.length,chunkIds:uniq\\}\\);\\}\\}dups\\.sort\\(\\(a,b\\)=>b\\.count-a\\.count\\|\\|a\\.name\\.localeCompare\\(b\\.name\\)\\);console\\.log\\('lazyChunks='\\+lazyNamed\\.length\\);console\\.log\\('duplicateModulesAcrossLazyChunks='\\+dups\\.length\\);if\\(dups\\.length\\)\\{console\\.log\\('topDuplicates='\\);for\\(const d of dups\\.slice\\(0,20\\)\\)\\{console\\.log\\('- '\\+d\\.name\\+' \\| lazyChunkCount='\\+d\\.count\\+' \\| chunkIds='\\+d\\.chunkIds\\.join\\(','\\)\\);\\}\\}\"$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^node -e \"const fs=require\\('fs'\\);const s=JSON\\.parse\\(fs\\.readFileSync\\('dist/test-web-001/stats\\.json','utf8'\\)\\);console\\.log\\('keys',Object\\.keys\\(s\\)\\);console\\.log\\('chunks',Array\\.isArray\\(s\\.chunks\\)\\?s\\.chunks\\.length:'none'\\);if\\(Array\\.isArray\\(s\\.chunks\\)&&s\\.chunks\\.length\\)\\{const c=s\\.chunks\\[0\\];console\\.log\\('chunkKeys',Object\\.keys\\(c\\)\\);console\\.log\\('sampleChunk',JSON\\.stringify\\(c,null,2\\)\\.slice\\(0,1200\\)\\);\\}console\\.log\\('modules',Array\\.isArray\\(s\\.modules\\)\\?s\\.modules\\.length:'none'\\);if\\(Array\\.isArray\\(s\\.modules\\)&&s\\.modules\\.length\\)\\{const m=s\\.modules\\[0\\];console\\.log\\('moduleKeys',Object\\.keys\\(m\\)\\);console\\.log\\('sampleModule',JSON\\.stringify\\(m,null,2\\)\\.slice\\(0,1200\\)\\);\\}\"$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^node -e \"const fs=require\\('fs'\\);const s=JSON\\.parse\\(fs\\.readFileSync\\('dist/test-web-001/stats\\.json','utf8'\\)\\);const out=s\\.outputs\\|\\|\\{\\};const names=Object\\.keys\\(out\\);console\\.log\\('outputs='\\+names\\.length\\);for\\(const n of names\\.slice\\(0,20\\)\\)\\{const o=out\\[n\\]\\|\\|\\{\\};console\\.log\\('---'\\);console\\.log\\(n\\);console\\.log\\('entryPoint='\\+\\(o\\.entryPoint\\|\\|''\\)\\);console\\.log\\('imports=' \\+ \\(\\(o\\.imports&&o\\.imports\\.length\\)\\|\\|0\\)\\);console\\.log\\('bytes='\\+\\(o\\.bytes\\|\\|0\\)\\);\\}\"$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^node -e \"const fs=require\\('fs'\\);const s=JSON\\.parse\\(fs\\.readFileSync\\('dist/test-web-001/stats\\.json','utf8'\\)\\);const outputs=s\\.outputs\\|\\|\\{\\};const lazyEntries=Object\\.entries\\(outputs\\)\\.filter\\(\\(\\[file,o\\]\\)=>typeof o\\.entryPoint==='string'&&o\\.entryPoint\\.startsWith\\('src/app/pages/'\\)&&o\\.entryPoint\\.endsWith\\('\\.component\\.ts'\\)\\);console\\.log\\('lazyEntryChunks='\\+lazyEntries\\.length\\);const perChunk=\\{\\};for\\(const \\[file,o\\] of lazyEntries\\)\\{perChunk\\[file\\]=new Set\\(Object\\.keys\\(o\\.inputs\\|\\|\\{\\}\\)\\);console\\.log\\(file\\+' <- '\\+o\\.entryPoint\\+' \\| embeddedInputs='\\+\\(Object\\.keys\\(o\\.inputs\\|\\|\\{\\}\\)\\.length\\)\\);\\}const files=Object\\.keys\\(perChunk\\);const dupCount=new Map\\(\\);for\\(let i=0;i<files\\.length;i\\+\\+\\)\\{for\\(const inp of perChunk\\[files\\[i\\]\\]\\)\\{let appears=0;for\\(let j=0;j<files\\.length;j\\+\\+\\)\\{if\\(perChunk\\[files\\[j\\]\\]\\.has\\(inp\\)\\) appears\\+\\+;\\}if\\(appears>1\\) dupCount\\.set\\(inp,appears\\);\\}\\}console\\.log\\('duplicatedEmbeddedInputsAcrossLazyEntryChunks='\\+dupCount\\.size\\);if\\(dupCount\\.size\\)\\{for\\(const \\[inp,c\\] of \\[\\.\\.\\.dupCount\\.entries\\(\\)\\]\\.sort\\(\\(a,b\\)=>b\\[1\\]-a\\[1\\]\\|\\|a\\[0\\]\\.localeCompare\\(b\\[0\\]\\)\\)\\.slice\\(0,25\\)\\)\\{console\\.log\\('- '\\+inp\\+' \\| appearsIn='\\+c\\+' lazy entry chunks'\\);\\}\\}\"$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "ForEach-Object": true,
+        "from\\s+['\\\"]moment['\\\"]": true,
+        "from\\s+['\\\"]@angular/material['\\\"]\"": true,
+        "npx playwright": true,
+        "npm install": true
     }
 }

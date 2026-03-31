@@ -1,26 +1,122 @@
-@use 'styles/variables';
+// SCSS module imports MUST come before any other rules (SCSS spec)
+@use 'styles/tokens';
 @use 'styles/typography';
 @use 'styles/animations';
+@use 'styles/variables';
+@use 'styles/primeng-theme';
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+// Tailwind CSS v4 — CSS-first configuration (processed by @tailwindcss/postcss)
+@import "tailwindcss";
+@import "primeicons/primeicons.css";
 
+// Configure dark mode to use .dark class on <html> (added by theme-init.js)
+@custom-variant dark (&:where(.dark, .dark *));
+
+// ---------------------------------------------------------------------------
+// Base layer overrides
+// ---------------------------------------------------------------------------
 @layer base {
   html {
     scroll-behavior: smooth;
+    font-family: var(--font-sans);
   }
 
   body {
-    @apply bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-50 transition-colors duration-200;
-    font-family: 'PrimaryFont', system-ui, -apple-system, sans-serif;
+    background-color: var(--color-surface-primary);
+    color: var(--color-text-primary);
+    transition: background-color var(--duration-base) var(--ease-in-out),
+                color var(--duration-base) var(--ease-in-out);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   *:focus-visible {
-    @apply outline-2 outline-offset-2 outline-primary-500;
+    outline: 2px solid var(--color-gold-400);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
   }
 }
 
+// ---------------------------------------------------------------------------
+// Utility: animation classes (registered from @theme tokens)
+// ---------------------------------------------------------------------------
+@utility animate-fade-up {
+  animation: var(--animate-fade-up);
+}
+
+@utility animate-fade-in {
+  animation: var(--animate-fade-in);
+}
+
+@utility animate-slide-in-right {
+  animation: var(--animate-slide-in-right);
+}
+
+@utility animate-slide-out-right {
+  animation: var(--animate-slide-out-right);
+}
+
+// ---------------------------------------------------------------------------
+// Reduced motion
+// ---------------------------------------------------------------------------
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Base layer overrides
+// ---------------------------------------------------------------------------
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-sans);
+  }
+
+  body {
+    background-color: var(--color-surface-primary);
+    color: var(--color-text-primary);
+    transition: background-color var(--duration-base) var(--ease-in-out),
+                color var(--duration-base) var(--ease-in-out);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  *:focus-visible {
+    outline: 2px solid var(--color-gold-400);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Utility: animation classes (registered from @theme tokens)
+// ---------------------------------------------------------------------------
+@utility animate-fade-up {
+  animation: var(--animate-fade-up);
+}
+
+@utility animate-fade-in {
+  animation: var(--animate-fade-in);
+}
+
+@utility animate-slide-in-right {
+  animation: var(--animate-slide-in-right);
+}
+
+@utility animate-slide-out-right {
+  animation: var(--animate-slide-out-right);
+}
+
+// ---------------------------------------------------------------------------
+// Reduced motion
+// ---------------------------------------------------------------------------
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

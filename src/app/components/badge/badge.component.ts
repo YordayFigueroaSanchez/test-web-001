@@ -1,27 +1,27 @@
 import { Component, input } from '@angular/core';
+import { BadgeModule } from 'primeng/badge';
 
 @Component({
   selector: 'app-badge',
   standalone: true,
+  imports: [BadgeModule],
   template: `
     <span
-      class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium"
-      [class]="variantClasses()"
-    >
-      {{ text() }}
-    </span>
+      pBadge
+      [value]="text()"
+      [severity]="severityMap()"
+    ></span>
   `,
 })
 export class BadgeComponent {
   readonly text = input.required<string>();
   readonly variant = input<'primary' | 'secondary' | 'accent'>('primary');
 
-  variantClasses(): string {
+  severityMap(): 'success' | 'secondary' | 'info' {
     const map = {
-      primary: 'bg-primary-100 text-primary-800 dark:bg-primary-900 dark:text-primary-200',
-      secondary:
-        'bg-secondary-100 text-secondary-800 dark:bg-secondary-900 dark:text-secondary-200',
-      accent: 'bg-accent-100 text-accent-800 dark:bg-accent-900 dark:text-accent-200',
+      primary: 'success' as const,
+      secondary: 'secondary' as const,
+      accent: 'info' as const,
     };
     return map[this.variant()];
   }

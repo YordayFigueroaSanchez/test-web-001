@@ -9,28 +9,35 @@ import { NavItem, SocialLink } from '../../shared/interfaces';
   template: `
     <footer
       role="contentinfo"
-      class="bg-gray-50 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700"
+      class="bg-matte-black-200 border-t-2 border-gold-400/40"
     >
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8 py-14">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
+
+          <!-- Brand -->
           <div>
-            <h3 class="text-lg font-bold text-gray-900 dark:text-gray-50 mb-4">test-web-001</h3>
-            <p class="text-gray-600 dark:text-gray-400 text-sm">
-              A modern marketing website built with Angular 19 and Tailwind CSS.
+            <div class="mb-4">
+              <span class="block text-[10px] tracking-widest font-medium text-gold-400 uppercase">Aura</span>
+              <span class="block text-base tracking-widest font-bold text-bone-200 uppercase">Studio</span>
+            </div>
+            <p class="text-sm text-neutral-400 leading-relaxed">
+              Luxury. Minimal. Premium.<br />
+              Diseño editorial de alto impacto.
             </p>
           </div>
 
+          <!-- Nav -->
           <nav aria-label="Footer navigation">
-            <h3 class="text-sm font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-4">
+            <h3 class="text-xs font-semibold uppercase tracking-widest text-neutral-500 mb-5">
               Navigation
             </h3>
-            <ul class="space-y-2">
+            <ul class="space-y-3">
               @for (item of navItems; track item.route) {
                 <li>
                   <a
                     [routerLink]="item.route"
-                    class="text-sm text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400
-                           transition-colors focus-visible:outline-2 focus-visible:outline-primary-500"
+                    class="text-sm text-neutral-400 hover:text-gold-300 transition-colors duration-200
+                           focus-visible:outline-2 focus-visible:outline-gold-400"
                   >
                     {{ item.label }}
                   </a>
@@ -39,30 +46,39 @@ import { NavItem, SocialLink } from '../../shared/interfaces';
             </ul>
           </nav>
 
+          <!-- Connect -->
           <div>
-            <h3 class="text-sm font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-4">
-              Social
+            <h3 class="text-xs font-semibold uppercase tracking-widest text-neutral-500 mb-5">
+              Connect
             </h3>
-            <div class="flex gap-4">
+            <div class="flex gap-3">
               @for (link of socialLinks; track link.platform) {
                 <a
                   [href]="link.url"
                   target="_blank"
                   rel="noopener noreferrer"
                   [attr.aria-label]="link.ariaLabel"
-                  class="text-gray-500 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400
-                         transition-colors focus-visible:outline-2 focus-visible:outline-primary-500"
+                  class="w-9 h-9 flex items-center justify-center rounded-full
+                         border border-neutral-700 text-neutral-400
+                         hover:border-gold-400 hover:text-gold-400
+                         transition-all duration-200
+                         focus-visible:outline-2 focus-visible:outline-gold-400"
                 >
-                  {{ link.icon }}
+                  <i [class]="link.icon" aria-hidden="true"></i>
                 </a>
               }
             </div>
           </div>
+
         </div>
 
-        <div class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700 text-center">
-          <p class="text-sm text-gray-500 dark:text-gray-400">
-            &copy; {{ currentYear }} test-web-001. All rights reserved.
+        <!-- Copyright -->
+        <div class="mt-12 pt-6 border-t border-neutral-800 flex flex-col sm:flex-row justify-between items-center gap-2">
+          <p class="text-xs text-neutral-600 tracking-wide">
+            &copy; {{ currentYear }} Aura Studio. All rights reserved.
+          </p>
+          <p class="text-xs text-neutral-700 tracking-widest uppercase">
+            Crafted with precision.
           </p>
         </div>
       </div>
@@ -81,8 +97,8 @@ export class FooterComponent {
   ];
 
   readonly socialLinks: SocialLink[] = [
-    { platform: 'GitHub', url: '#', icon: '🐙', ariaLabel: 'Visit our GitHub' },
-    { platform: 'Twitter', url: '#', icon: '🐦', ariaLabel: 'Follow us on Twitter' },
-    { platform: 'LinkedIn', url: '#', icon: '💼', ariaLabel: 'Connect on LinkedIn' },
+    { platform: 'GitHub', url: '#', icon: 'pi pi-github', ariaLabel: 'Visit our GitHub' },
+    { platform: 'Instagram', url: '#', icon: 'pi pi-instagram', ariaLabel: 'Follow us on Instagram' },
+    { platform: 'LinkedIn', url: '#', icon: 'pi pi-linkedin', ariaLabel: 'Connect on LinkedIn' },
   ];
 }

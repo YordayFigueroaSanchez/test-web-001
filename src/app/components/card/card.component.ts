@@ -1,34 +1,40 @@
 import { Component, input } from '@angular/core';
+import { CardModule } from 'primeng/card';
 import { CardVariant } from '../../shared/interfaces';
 
 @Component({
   selector: 'app-card',
   standalone: true,
+  imports: [CardModule],
   template: `
-    <article
-      class="rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300
-             bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700"
-    >
+    <p-card>
       @if (imageSrc()) {
-        <img
-          [src]="imageSrc()"
-          [alt]="imageAlt()"
-          [width]="640"
-          [height]="360"
-          class="w-full h-48 object-cover"
-          loading="lazy"
-        />
+        <ng-template pTemplate="header">
+          <img
+            [src]="imageSrc()"
+            [alt]="imageAlt()"
+            [width]="640"
+            [height]="360"
+            class="w-full h-48 object-cover"
+            loading="lazy"
+          />
+        </ng-template>
       }
-      <div class="p-6">
-        @if (title()) {
-          <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-gray-50">{{ title() }}</h3>
-        }
-        @if (description()) {
-          <p class="text-gray-600 dark:text-gray-400">{{ description() }}</p>
-        }
-        <ng-content />
-      </div>
-    </article>
+
+      @if (title()) {
+        <ng-template pTemplate="title">
+          <h3 class="text-xl font-bold">{{ title() }}</h3>
+        </ng-template>
+      }
+
+      @if (description()) {
+        <ng-template pTemplate="subtitle">
+          <p>{{ description() }}</p>
+        </ng-template>
+      }
+      
+      <ng-content />
+    </p-card>
   `,
 })
 export class CardComponent {

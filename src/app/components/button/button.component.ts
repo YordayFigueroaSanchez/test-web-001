@@ -1,16 +1,19 @@
 import { Component, input } from '@angular/core';
+import { ButtonModule } from 'primeng/button';
 import { ButtonVariant, ButtonSize } from '../../shared/interfaces';
 
 @Component({
   selector: 'app-button',
   standalone: true,
+  imports: [ButtonModule],
   template: `
     <button
+      pButton
       [type]="type()"
       [disabled]="disabled()"
       [attr.aria-label]="ariaLabel()"
-      [class]="buttonClasses()"
-      class="inline-flex items-center justify-center font-medium transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500"
+      [severity]="serverityMap()"
+      [size]="sizeMap()"
     >
       <ng-content />
     </button>
@@ -23,25 +26,22 @@ export class ButtonComponent {
   readonly ariaLabel = input<string | undefined>(undefined);
   readonly type = input<'button' | 'submit'>('button');
 
-  buttonClasses(): string {
-    const variantMap: Record<ButtonVariant, string> = {
-      primary:
-        'bg-primary-600 text-white hover:bg-primary-700 dark:bg-primary-500 dark:hover:bg-primary-600',
-      secondary:
-        'bg-secondary-600 text-white hover:bg-secondary-700 dark:bg-secondary-500 dark:hover:bg-secondary-600',
-      outline:
-        'border-2 border-primary-600 text-primary-600 hover:bg-primary-50 dark:border-primary-400 dark:text-primary-400 dark:hover:bg-primary-950',
-      icon: 'p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800',
+  serverityMap(): 'success' | 'info' | 'danger' | 'secondary' | 'contrast' | undefined {
+    const map: Record<ButtonVariant, 'success' | 'info' | 'danger' | 'secondary' | 'contrast' | undefined> = {
+      primary: 'success',
+      secondary: 'secondary',
+      outline: 'info',
+      icon: undefined,
     };
+    return map[this.variant()];
+  }
 
-    const sizeMap: Record<ButtonSize, string> = {
-      sm: 'px-3 py-1.5 text-sm rounded-md',
-      md: 'px-5 py-2.5 text-base rounded-lg',
-      lg: 'px-7 py-3.5 text-lg rounded-xl',
+  sizeMap(): 'small' | 'large' | undefined {
+    const map: Record<ButtonSize, 'small' | 'large' | undefined> = {
+      sm: 'small',
+      md: undefined,
+      lg: 'large',
     };
-
-    const disabledClass = this.disabled() ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer';
-
-    return `${variantMap[this.variant()]} ${this.variant() !== 'icon' ? sizeMap[this.size()] : ''} ${disabledClass}`;
+    return map[this.size()];
   }
 }

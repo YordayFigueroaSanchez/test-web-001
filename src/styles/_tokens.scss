@@ -1,0 +1,200 @@
+// =============================================================================
+// Aura Studio — Design Tokens
+// Luxury Minimalism: Bone / Matte Black / Gold palette
+// =============================================================================
+
+@theme {
+  // ---------------------------------------------------------------------------
+  // COLORS — Aura Studio Palette
+  // ---------------------------------------------------------------------------
+
+  // Bone / Ivory — primary light surface
+  --color-bone-50: #fdfcf9;
+  --color-bone-100: #f9f6f0;
+  --color-bone-200: #f5f0e8;      // Main bone — light mode background
+  --color-bone-300: #ede4d3;
+  --color-bone-400: #e0d1b8;
+  --color-bone-500: #cfc0a0;
+
+  // Matte Black — primary dark surface
+  --color-matte-black-50: #2a2a2a;
+  --color-matte-black-100: #222222;
+  --color-matte-black-200: #1a1a1a;   // Main matte black — dark mode background
+  --color-matte-black-300: #141414;
+  --color-matte-black-400: #0f0f0f;
+  --color-matte-black-500: #0a0a0a;
+
+  // Gold — accent & highlight
+  --color-gold-50: #fdf6e3;
+  --color-gold-100: #f8e9b8;
+  --color-gold-200: #e8c97a;
+  --color-gold-300: #d4a843;      // Gold hover / active
+  --color-gold-400: #c9a84c;      // Main gold
+  --color-gold-500: #b8923a;      // Gold pressed / deeper
+
+  // Neutrals — support for states and feedback
+  --color-neutral-50: #fafafa;
+  --color-neutral-100: #f5f5f5;
+  --color-neutral-200: #e5e5e5;
+  --color-neutral-300: #d4d4d4;
+  --color-neutral-400: #a3a3a3;
+  --color-neutral-500: #737373;
+  --color-neutral-600: #525252;
+  --color-neutral-700: #404040;
+  --color-neutral-800: #262626;
+  --color-neutral-900: #171717;
+
+  // Feedback colors (minimal — only for functional states)
+  --color-success: #4a7c59;
+  --color-success-light: #e8f5e9;
+  --color-error: #8b3030;
+  --color-error-light: #fdecea;
+  --color-warning: #9c6f28;
+  --color-warning-light: #fff8e1;
+
+  // ---------------------------------------------------------------------------
+  // SEMANTIC SURFACE TOKENS — Light mode defaults
+  // ---------------------------------------------------------------------------
+  --color-surface-primary: var(--color-bone-200);
+  --color-surface-secondary: var(--color-bone-100);
+  --color-surface-tertiary: var(--color-bone-50);
+  --color-surface-elevated: #ffffff;
+  --color-surface-overlay: rgba(26, 26, 26, 0.6);
+
+  --color-text-primary: var(--color-matte-black-200);
+  --color-text-secondary: var(--color-neutral-600);
+  --color-text-muted: var(--color-neutral-400);
+  --color-text-inverse: var(--color-bone-200);
+  --color-text-accent: var(--color-gold-400);
+
+  --color-border-default: var(--color-neutral-300);
+  --color-border-subtle: var(--color-neutral-200);
+  --color-border-accent: var(--color-gold-400);
+
+  // ---------------------------------------------------------------------------
+  // TYPOGRAPHY
+  // ---------------------------------------------------------------------------
+  --font-sans: 'PrimaryFont', system-ui, -apple-system, sans-serif;
+  --font-heading: 'PrimaryFont', system-ui, -apple-system, sans-serif;
+
+  --font-size-xs:   0.75rem;    // 12px
+  --font-size-sm:   0.875rem;   // 14px
+  --font-size-base: 1rem;       // 16px
+  --font-size-lg:   1.125rem;   // 18px
+  --font-size-xl:   1.25rem;    // 20px
+  --font-size-2xl:  1.5rem;     // 24px
+  --font-size-3xl:  1.875rem;   // 30px
+  --font-size-4xl:  2.25rem;    // 36px
+  --font-size-5xl:  3rem;       // 48px
+  --font-size-6xl:  3.75rem;    // 60px
+  --font-size-7xl:  4.5rem;     // 72px
+
+  --font-weight-regular: 400;
+  --font-weight-medium:  500;
+  --font-weight-bold:    700;
+
+  --line-height-tight:   1.2;
+  --line-height-snug:    1.375;
+  --line-height-normal:  1.5;
+  --line-height-relaxed: 1.625;
+  --line-height-loose:   2;
+
+  --letter-spacing-tight:  -0.025em;
+  --letter-spacing-normal:  0em;
+  --letter-spacing-wide:    0.025em;
+  --letter-spacing-wider:   0.05em;
+  --letter-spacing-widest:  0.1em;
+
+  // ---------------------------------------------------------------------------
+  // SPACING
+  // ---------------------------------------------------------------------------
+  --spacing-px:   1px;
+  --spacing-0:    0;
+  --spacing-1:    0.25rem;
+  --spacing-2:    0.5rem;
+  --spacing-3:    0.75rem;
+  --spacing-4:    1rem;
+  --spacing-5:    1.25rem;
+  --spacing-6:    1.5rem;
+  --spacing-8:    2rem;
+  --spacing-10:   2.5rem;
+  --spacing-12:   3rem;
+  --spacing-16:   4rem;
+  --spacing-20:   5rem;
+  --spacing-24:   6rem;
+  --spacing-32:   8rem;
+
+  // ---------------------------------------------------------------------------
+  // BORDER RADIUS
+  // ---------------------------------------------------------------------------
+  --radius-none:   0;
+  --radius-sm:     0.125rem;
+  --radius-base:   0.25rem;
+  --radius-md:     0.375rem;
+  --radius-lg:     0.5rem;
+  --radius-xl:     0.75rem;
+  --radius-2xl:    1rem;
+  --radius-full:   9999px;
+
+  // ---------------------------------------------------------------------------
+  // SHADOWS — Subtle luxury aesthetic
+  // ---------------------------------------------------------------------------
+  --shadow-xs:   0 1px 2px 0 rgba(26, 26, 26, 0.05);
+  --shadow-sm:   0 1px 3px 0 rgba(26, 26, 26, 0.08), 0 1px 2px -1px rgba(26, 26, 26, 0.04);
+  --shadow-md:   0 4px 6px -1px rgba(26, 26, 26, 0.07), 0 2px 4px -2px rgba(26, 26, 26, 0.05);
+  --shadow-lg:   0 10px 15px -3px rgba(26, 26, 26, 0.06), 0 4px 6px -4px rgba(26, 26, 26, 0.04);
+  --shadow-xl:   0 20px 25px -5px rgba(26, 26, 26, 0.08), 0 8px 10px -6px rgba(26, 26, 26, 0.04);
+  --shadow-gold: 0 0 0 1px rgba(201, 168, 76, 0.2), 0 4px 12px rgba(201, 168, 76, 0.1);
+
+  // ---------------------------------------------------------------------------
+  // TRANSITIONS
+  // ---------------------------------------------------------------------------
+  --duration-fast:   150ms;
+  --duration-base:   200ms;
+  --duration-slow:   300ms;
+  --duration-slower: 500ms;
+  --duration-anim:   600ms;
+
+  --ease-out:      cubic-bezier(0.0, 0.0, 0.2, 1);
+  --ease-in-out:   cubic-bezier(0.4, 0.0, 0.2, 1);
+  --ease-luxury:   cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  // ---------------------------------------------------------------------------
+  // ANIMATIONS — registered for @utility use
+  // ---------------------------------------------------------------------------
+  --animate-fade-up:       fadeUp var(--duration-anim) var(--ease-out) forwards;
+  --animate-fade-in:       fadeIn 0.4s var(--ease-out) forwards;
+  --animate-slide-in-right: slideInRight 0.3s var(--ease-out) forwards;
+  --animate-slide-out-right: slideOutRight 0.2s cubic-bezier(0.4, 0, 1, 1) forwards;
+
+  // ---------------------------------------------------------------------------
+  // Z-INDEX SCALE
+  // ---------------------------------------------------------------------------
+  --z-base:    0;
+  --z-raised:  10;
+  --z-dropdown: 100;
+  --z-sticky:  200;
+  --z-overlay: 300;
+  --z-modal:   400;
+  --z-toast:   500;
+}
+
+// ---------------------------------------------------------------------------
+// DARK MODE OVERRIDES — semantic surface tokens
+// Uses .dark class added by theme-init.js to <html> element
+// ---------------------------------------------------------------------------
+.dark {
+  --color-surface-primary:   var(--color-matte-black-200);
+  --color-surface-secondary: var(--color-matte-black-100);
+  --color-surface-tertiary:  var(--color-matte-black-50);
+  --color-surface-elevated:  #242424;
+  --color-surface-overlay:   rgba(10, 10, 10, 0.75);
+
+  --color-text-primary:   var(--color-bone-200);
+  --color-text-secondary: var(--color-neutral-400);
+  --color-text-muted:     var(--color-neutral-600);
+  --color-text-inverse:   var(--color-matte-black-200);
+
+  --color-border-default: var(--color-neutral-700);
+  --color-border-subtle:  var(--color-neutral-800);
+}

@@ -7,22 +7,22 @@ describe('HomeComponent', () => {
     await render(HomeComponent, {
       providers: [provideRouter([])],
     });
-    expect(screen.getByRole('heading', { name: /welcome to/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /design presence that speaks before you do/i })).toBeInTheDocument();
   });
 
   it('should render feature cards', async () => {
     await render(HomeComponent, {
       providers: [provideRouter([])],
     });
-    expect(screen.getByText('Modern Design')).toBeInTheDocument();
-    expect(screen.getByText('Fully Responsive')).toBeInTheDocument();
-    expect(screen.getByText('Accessible')).toBeInTheDocument();
+    expect(screen.getByText('Editorial Direction')).toBeInTheDocument();
+    expect(screen.getByText('Conversion Architecture')).toBeInTheDocument();
+    expect(screen.getByText('Performance By Default')).toBeInTheDocument();
   });
 
   it('should render CTA section', async () => {
     await render(HomeComponent, {
       providers: [provideRouter([])],
     });
-    expect(screen.getByText('Ready to get started?')).toBeInTheDocument();
+    expect(screen.getByText('Ready To Elevate Your Brand Presence?')).toBeInTheDocument();
   });
 });

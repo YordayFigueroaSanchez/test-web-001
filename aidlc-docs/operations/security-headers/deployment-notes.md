@@ -26,3 +26,13 @@ Archivo: `cloudfront-response-headers-policy.json`
 ## Nota de compatibilidad
 - `frame-ancestors` y `report-to` deben vivir en headers, no en meta tags.
 - El proyecto ya tiene enforcement CI para bloquear CSP en meta tags de HTML.
+
+## GitHub Pages - limitacion verificada
+- Verificacion HEAD sobre `https://yordayfigueroasanchez.github.io/test-web-001/` devuelve 200, pero sin headers de seguridad efectivos (`Content-Security-Policy`, `Referrer-Policy`, `X-Content-Type-Options`, etc.).
+- GitHub Pages no permite configurar headers HTTP personalizados por repositorio (el archivo `_headers` se genera solo como compatibilidad para otros hosts).
+
+## Recomendacion operativa
+- Para enforcement real de CSP/headers usar una capa edge delante de GitHub Pages:
+   - CloudFront + Response Headers Policy (archivo JSON ya incluido)
+   - Nginx reverse proxy (config ya incluida)
+- Mantener en CI la politica actual: bloquear CSP meta tags en HTML y validar integridad del artefacto.

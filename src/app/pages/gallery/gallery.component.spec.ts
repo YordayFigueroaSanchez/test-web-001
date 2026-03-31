@@ -11,7 +11,7 @@ describe('GalleryComponent', () => {
 
   it('should render the gallery heading', async () => {
     await setup();
-    expect(screen.getByRole('heading', { name: /gallery/i })).toBeTruthy();
+    expect(screen.getByRole('heading', { name: /visual references from the studio/i })).toBeTruthy();
   });
 
   it('should render gallery images', async () => {

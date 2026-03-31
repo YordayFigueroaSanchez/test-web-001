@@ -22,8 +22,15 @@ describe('SeoService', () => {
 
   it('should set page SEO config', () => {
     const titleService = TestBed.inject(Title);
-    service.setPageSeo({ title: 'About', description: 'About page' });
+    service.setPageSeo({ title: 'About', description: 'About page', route: '/about' });
     expect(titleService.getTitle()).toBe('About');
+  });
+
+  it('should set canonical url from route', () => {
+    service.setPageSeo({ title: 'Gallery', description: 'Gallery page', route: '/gallery' });
+    const canonical = document.querySelector('link[rel="canonical"]');
+    expect(canonical).toBeTruthy();
+    expect(canonical?.getAttribute('href')).toContain('#/gallery');
   });
 
   it('should update meta tags with name', () => {
@@ -68,5 +75,16 @@ describe('SeoService', () => {
     });
     expect(titleService.getTitle()).toBe('Full SEO');
     expect(meta.getTag('name="robots"')?.getAttribute('content')).toBe('index,follow');
+  });
+
+  it('should generate default OG tags from page config', () => {
+    const meta = TestBed.inject(Meta);
+    service.setPageSeo({ title: 'Contact', description: 'Contact page', route: '/contact' });
+
+    expect(meta.getTag('property="og:title"')?.getAttribute('content')).toBe('Contact');
+    expect(meta.getTag('property="og:description"')?.getAttribute('content')).toBe('Contact page');
+    expect(meta.getTag('property="og:type"')?.getAttribute('content')).toBe('website');
+    expect(meta.getTag('property="og:locale"')?.getAttribute('content')).toBe('es_ES');
+    expect(meta.getTag('property="og:url"')?.getAttribute('content')).toContain('#/contact');
   });
 });

@@ -10,14 +10,16 @@ import { TeamMember } from '../../shared/interfaces';
   template: `
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
       <section aria-labelledby="about-heading" class="mb-16">
+        <p class="text-xs uppercase tracking-[0.22em] text-gold-400 mb-3">Our Philosophy</p>
         <h1
           id="about-heading"
-          class="text-4xl font-bold text-gray-900 dark:text-gray-50 mb-6"
+          class="text-4xl font-bold text-matte-black-200 dark:text-bone-200 mb-6"
         >
-          About Us
+          We Build Digital Presence With Precision
         </h1>
-        <p class="text-lg text-gray-600 dark:text-gray-400 max-w-3xl">
-          We are a team dedicated to creating modern, accessible web experiences that delight users.
+        <p class="text-lg text-neutral-700 dark:text-neutral-300 max-w-3xl leading-relaxed">
+          Aura Studio is a boutique team of strategists, designers, and engineers focused on
+          creating premium brand experiences that feel timeless and perform flawlessly.
         </p>
       </section>
 
@@ -26,18 +28,20 @@ import { TeamMember } from '../../shared/interfaces';
           <div>
             <h2
               id="mission-heading"
-              class="text-2xl font-bold text-gray-900 dark:text-gray-50 mb-4"
+              class="text-2xl font-bold text-matte-black-200 dark:text-bone-200 mb-4"
             >
               Our Mission
             </h2>
-            <p class="text-gray-600 dark:text-gray-400">
-              To deliver high-quality, accessible digital experiences that empower businesses and engage their audiences.
+            <p class="text-neutral-700 dark:text-neutral-300 leading-relaxed">
+              To turn ambitious brand vision into cohesive digital systems that communicate value,
+              elevate trust, and support measurable growth.
             </p>
           </div>
           <div>
-            <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-50 mb-4">Our Vision</h2>
-            <p class="text-gray-600 dark:text-gray-400">
-              A world where every website is accessible, performant, and beautiful by default.
+            <h2 class="text-2xl font-bold text-matte-black-200 dark:text-bone-200 mb-4">Our Vision</h2>
+            <p class="text-neutral-700 dark:text-neutral-300 leading-relaxed">
+              A digital landscape where luxury aesthetics, accessibility, and technical excellence
+              coexist without compromise.
             </p>
           </div>
         </div>
@@ -46,9 +50,9 @@ import { TeamMember } from '../../shared/interfaces';
       <section aria-labelledby="team-heading">
         <h2
           id="team-heading"
-          class="text-3xl font-bold text-gray-900 dark:text-gray-50 mb-8"
+          class="text-3xl font-bold text-matte-black-200 dark:text-bone-200 mb-8"
         >
-          Our Team
+          The Studio Team
         </h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           @for (member of team; track member.name) {
@@ -69,15 +73,16 @@ export class AboutComponent implements OnInit {
   private readonly seoService = inject(SeoService);
 
   readonly team: TeamMember[] = [
-    { name: 'Jane Doe', role: 'CEO & Founder', imageSrc: '', imageAlt: 'Photo of Jane Doe' },
-    { name: 'John Smith', role: 'CTO', imageSrc: '', imageAlt: 'Photo of John Smith' },
-    { name: 'Maria Garcia', role: 'Lead Designer', imageSrc: '', imageAlt: 'Photo of Maria Garcia' },
+    { name: 'Elena Marlowe', role: 'Creative Director', imageSrc: '', imageAlt: 'Photo of Elena Marlowe' },
+    { name: 'Noah Bennett', role: 'Technical Lead', imageSrc: '', imageAlt: 'Photo of Noah Bennett' },
+    { name: 'Sofia Laurent', role: 'Brand Strategist', imageSrc: '', imageAlt: 'Photo of Sofia Laurent' },
   ];
 
   ngOnInit(): void {
     this.seoService.setPageSeo({
-      title: 'About Us — test-web-001',
-      description: 'Learn about our team, mission, and vision.',
+      title: 'About Aura Studio — Craft, Strategy, Precision',
+      description: 'Meet the Aura Studio team and discover our mission to create premium digital experiences with measurable impact.',
+      route: '/about',
     });
   }
 }

@@ -1,0 +1,41 @@
+/* PrimeNG token bridge for Aura Studio design system */
+:root {
+  --p-primary-50: var(--color-gold-50);
+  --p-primary-100: var(--color-gold-100);
+  --p-primary-200: var(--color-gold-200);
+  --p-primary-300: var(--color-gold-300);
+  --p-primary-400: var(--color-gold-400);
+  --p-primary-500: var(--color-gold-500);
+  --p-primary-color: var(--color-gold-400);
+  --p-primary-contrast-color: var(--color-matte-black-200);
+
+  --p-surface-0: var(--color-surface-primary);
+  --p-surface-50: var(--color-surface-secondary);
+  --p-surface-100: var(--color-surface-tertiary);
+  --p-content-background: var(--color-surface-primary);
+  --p-content-color: var(--color-text-primary);
+
+  --p-text-color: var(--color-text-primary);
+  --p-text-muted-color: var(--color-text-secondary);
+  --p-border-color: var(--color-border-primary);
+
+  --p-focus-ring-color: var(--color-gold-400);
+  --p-focus-ring-shadow: 0 0 0 0.14rem color-mix(in srgb, var(--color-gold-400) 40%, transparent);
+}
+
+.dark {
+  --p-primary-color: var(--color-gold-300);
+  --p-primary-contrast-color: var(--color-matte-black-200);
+
+  --p-surface-0: var(--color-surface-primary);
+  --p-surface-50: var(--color-surface-secondary);
+  --p-surface-100: var(--color-surface-tertiary);
+  --p-content-background: var(--color-surface-primary);
+  --p-content-color: var(--color-text-primary);
+
+  --p-text-color: var(--color-text-primary);
+  --p-text-muted-color: var(--color-text-secondary);
+  --p-border-color: var(--color-border-primary);
+
+  --p-focus-ring-color: var(--color-gold-300);
+}

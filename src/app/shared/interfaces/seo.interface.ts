@@ -16,6 +16,8 @@ export interface OpenGraphData {
 export interface PageSeoConfig {
   title: string;
   description: string;
+  route?: string;
+  canonicalUrl?: string;
   ogData?: OpenGraphData;
   additionalMeta?: MetaTag[];
 }

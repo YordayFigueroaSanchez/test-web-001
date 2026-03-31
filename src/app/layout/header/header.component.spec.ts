@@ -14,7 +14,7 @@ describe('HeaderComponent', () => {
     await render(HeaderComponent, {
       providers: [provideRouter([])],
     });
-    expect(screen.getByRole('link', { name: 'Home' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /aura\s*studio/i })).toBeInTheDocument();
   });
 
   it('should have menu button for mobile', async () => {

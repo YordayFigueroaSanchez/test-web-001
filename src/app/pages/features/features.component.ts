@@ -12,14 +12,16 @@ import { FeatureItem } from '../../shared/interfaces';
   template: `
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
       <section aria-labelledby="features-heading" class="mb-16">
+        <p class="text-xs text-center uppercase tracking-[0.22em] text-gold-400 mb-3">Capabilities</p>
         <h1
           id="features-heading"
-          class="text-4xl font-bold text-gray-900 dark:text-gray-50 mb-6 text-center"
+          class="text-4xl font-bold text-matte-black-200 dark:text-bone-200 mb-6 text-center"
         >
-          Features
+          Signature Services For Modern Brands
         </h1>
-        <p class="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto text-center mb-12">
-          Discover everything our platform has to offer, crafted with modern technology and accessibility in mind.
+        <p class="text-lg text-neutral-700 dark:text-neutral-300 max-w-3xl mx-auto text-center mb-12 leading-relaxed">
+          From strategic positioning to interface systems, each capability is designed
+          to sharpen your message and strengthen your digital conversion path.
         </p>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -39,14 +41,14 @@ import { FeatureItem } from '../../shared/interfaces';
       <section aria-labelledby="cta-heading" class="text-center py-16">
         <h2
           id="cta-heading"
-          class="text-3xl font-bold text-gray-900 dark:text-gray-50 mb-4"
+          class="text-3xl font-bold text-matte-black-200 dark:text-bone-200 mb-4"
         >
-          Ready to Get Started?
+          Ready To Build Your Next Digital Chapter?
         </h2>
-        <p class="text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
-          Join thousands of satisfied users who have already made the switch.
+        <p class="text-neutral-700 dark:text-neutral-300 mb-8 max-w-2xl mx-auto">
+          Let us align your brand story, UX direction, and frontend performance in one cohesive execution.
         </p>
-        <app-button variant="primary" ariaLabel="Contact us to get started">Contact Us</app-button>
+        <app-button variant="primary" ariaLabel="Schedule a strategy call">Schedule A Strategy Call</app-button>
       </section>
     </div>
   `,
@@ -56,41 +58,42 @@ export class FeaturesComponent implements OnInit {
 
   readonly features: FeatureItem[] = [
     {
-      title: 'Responsive Design',
-      description: 'Fully responsive layouts that look great on any device, from mobile to desktop.',
-      icon: '📱',
+      title: 'Brand Strategy',
+      description: 'Positioning frameworks that align voice, visuals, and business objectives.',
+      icon: '◇',
     },
     {
-      title: 'Accessibility First',
-      description: 'Built to WCAG 2.1 AAA standards ensuring everyone can use your website.',
-      icon: '♿',
+      title: 'UX Direction',
+      description: 'Clear user journeys and interaction models that reduce friction and increase clarity.',
+      icon: '◎',
     },
     {
-      title: 'Dark Mode',
-      description: 'Automatic dark mode support that respects user system preferences.',
-      icon: '🌙',
+      title: 'Design Systems',
+      description: 'Scalable visual tokens and reusable UI foundations for consistent product evolution.',
+      icon: '▦',
     },
     {
-      title: 'Blazing Fast',
-      description: 'Optimized performance with lazy loading, efficient bundling, and image optimization.',
-      icon: '⚡',
+      title: 'Frontend Engineering',
+      description: 'Angular-first architecture focused on maintainability, accessibility, and speed.',
+      icon: '⌁',
     },
     {
-      title: 'Multi-Language',
-      description: 'Built-in internationalization with support for Spanish and English.',
-      icon: '🌐',
+      title: 'SEO & Content Structure',
+      description: 'Semantic content systems that improve discoverability and narrative coherence.',
+      icon: '◍',
     },
     {
-      title: 'Modern Stack',
-      description: 'Built with Angular 19, Tailwind CSS, and the latest web standards.',
-      icon: '🛠️',
+      title: 'Optimization & Growth',
+      description: 'Continuous refinement of performance, analytics, and conversion touchpoints.',
+      icon: '↗',
     },
   ];
 
   ngOnInit(): void {
     this.seoService.setPageSeo({
-      title: 'Features — test-web-001',
-      description: 'Explore the features of our modern, accessible, and performant web platform.',
+      title: 'Aura Studio Services — Strategy, UX, Engineering',
+      description: 'Discover Aura Studio capabilities across brand strategy, UX direction, design systems, and frontend delivery.',
+      route: '/features',
     });
   }
 }

@@ -14,6 +14,6 @@ describe('FooterComponent', () => {
     await render(FooterComponent, {
       providers: [provideRouter([])],
     });
-    expect(screen.getByText(/All rights reserved/)).toBeInTheDocument();
+    expect(screen.getByText(/Aura Studio.*All rights reserved/)).toBeInTheDocument();
   });
 });

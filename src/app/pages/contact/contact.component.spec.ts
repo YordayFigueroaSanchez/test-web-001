@@ -11,7 +11,7 @@ describe('ContactComponent', () => {
 
   it('should render the contact heading', async () => {
     await setup();
-    expect(screen.getByRole('heading', { name: /contact us/i })).toBeTruthy();
+    expect(screen.getByRole('heading', { name: /let’s build something distinct/i })).toBeTruthy();
   });
 
   it('should render the contact form', async () => {
@@ -23,8 +23,8 @@ describe('ContactComponent', () => {
 
   it('should render send and whatsapp buttons', async () => {
     await setup();
-    expect(screen.getByRole('button', { name: /send contact message/i })).toBeTruthy();
-    expect(screen.getByRole('button', { name: /contact us via whatsapp/i })).toBeTruthy();
+    expect(screen.getByRole('button', { name: /send project brief/i })).toBeTruthy();
+    expect(screen.getByRole('button', { name: /contact aura studio via whatsapp/i })).toBeTruthy();
   });
 
   it('should show success message after valid submission', async () => {
@@ -38,10 +38,10 @@ describe('ContactComponent', () => {
     fireEvent.input(emailInput, { target: { value: 'jane@example.com' } });
     fireEvent.input(messageInput, { target: { value: 'Hello this is a test message' } });
 
-    const submitButton = screen.getByRole('button', { name: /send contact message/i });
+    const submitButton = screen.getByRole('button', { name: /send project brief/i });
     fireEvent.click(submitButton);
 
-    expect(screen.getByText(/your message has been sent/i)).toBeTruthy();
+    expect(screen.getByText(/your brief has been received/i)).toBeTruthy();
   });
 
   it('should allow sending another message after success', async () => {
@@ -50,15 +50,15 @@ describe('ContactComponent', () => {
     fireEvent.input(screen.getByLabelText(/^name/i), { target: { value: 'Jane Doe' } });
     fireEvent.input(screen.getByLabelText(/^email/i), { target: { value: 'jane@example.com' } });
     fireEvent.input(screen.getByLabelText(/^message/i), { target: { value: 'Hello this is a test message' } });
-    fireEvent.click(screen.getByRole('button', { name: /send contact message/i }));
+    fireEvent.click(screen.getByRole('button', { name: /send project brief/i }));
 
-    fireEvent.click(screen.getByText(/send another message/i));
+    fireEvent.click(screen.getByText(/send another brief/i));
     expect(screen.getByLabelText(/^name/i)).toBeTruthy();
   });
 
   it('should not submit when form is invalid', async () => {
     await setup();
-    const submitButton = screen.getByRole('button', { name: /send contact message/i });
+    const submitButton = screen.getByRole('button', { name: /send project brief/i });
     expect(submitButton).toBeDisabled();
   });
 
@@ -75,7 +75,7 @@ describe('ContactComponent', () => {
 
   it('should call whatsapp service on WhatsApp button click', async () => {
     await setup();
-    const whatsappButton = screen.getByRole('button', { name: /contact us via whatsapp/i });
+    const whatsappButton = screen.getByRole('button', { name: /contact aura studio via whatsapp/i });
     fireEvent.click(whatsappButton);
     // Should not throw
     expect(whatsappButton).toBeTruthy();

@@ -11,7 +11,7 @@ describe('AboutComponent', () => {
 
   it('should render the about heading', async () => {
     await setup();
-    expect(screen.getByRole('heading', { name: /about us/i })).toBeTruthy();
+    expect(screen.getByRole('heading', { name: /we build digital presence with precision/i })).toBeTruthy();
   });
 
   it('should render mission and vision sections', async () => {
@@ -22,8 +22,8 @@ describe('AboutComponent', () => {
 
   it('should render team members', async () => {
     await setup();
-    expect(screen.getByText(/jane doe/i)).toBeTruthy();
-    expect(screen.getByText(/john smith/i)).toBeTruthy();
-    expect(screen.getByText(/maria garcia/i)).toBeTruthy();
+    expect(screen.getByText(/elena marlowe/i)).toBeTruthy();
+    expect(screen.getByText(/noah bennett/i)).toBeTruthy();
+    expect(screen.getByText(/sofia laurent/i)).toBeTruthy();
   });
 });

@@ -1,14 +1,16 @@
 import { Component, input, signal } from '@angular/core';
 import { AccordionItem } from '../../shared/interfaces';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-accordion',
   standalone: true,
+  imports: [CommonModule],
   template: `
-    <div class="divide-y divide-gray-200 dark:divide-gray-700" role="presentation">
+    <div class="p-accordion" role="presentation">
       @for (item of items(); track item.id; let i = $index) {
-        <div>
-          <h3>
+        <div class="p-accordion-tab">
+          <h3 class="p-accordion-header">
             <button
               type="button"
               [attr.aria-expanded]="expandedIds().has(item.id)"
@@ -16,14 +18,13 @@ import { AccordionItem } from '../../shared/interfaces';
               [id]="'accordion-header-' + item.id"
               (click)="toggle(item.id)"
               (keydown)="onKeydown($event, i)"
-              class="flex items-center justify-between w-full py-4 px-2 text-left font-medium
-                     text-gray-900 dark:text-gray-50 hover:bg-gray-50 dark:hover:bg-gray-800
-                     transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-primary-500"
+              class="p-accordion-header-link"
+              [class.p-accordion-header-active]="expandedIds().has(item.id)"
             >
-              <span>{{ item.title }}</span>
+              <span class="p-accordion-header-title">{{ item.title }}</span>
               <span
-                class="ml-4 shrink-0 transition-transform duration-200"
-                [class.rotate-180]="expandedIds().has(item.id)"
+                class="p-accordion-toggle-icon"
+                [class.expanded]="expandedIds().has(item.id)"
                 aria-hidden="true"
               >
                 ▼
@@ -35,7 +36,7 @@ import { AccordionItem } from '../../shared/interfaces';
               [id]="'accordion-panel-' + item.id"
               role="region"
               [attr.aria-labelledby]="'accordion-header-' + item.id"
-              class="px-2 pb-4 text-gray-600 dark:text-gray-400"
+              class="p-accordion-panel p-accordion-panel-active"
             >
               {{ item.content }}
             </div>
@@ -44,6 +45,81 @@ import { AccordionItem } from '../../shared/interfaces';
       }
     </div>
   `,
+  styles: [`
+    :host ::ng-deep {
+      .p-accordion {
+        border: 1px solid var(--p-content-border-color);
+        border-radius: var(--p-border-radius);
+      }
+
+      .p-accordion-tab {
+        border-bottom: 1px solid var(--p-content-border-color);
+
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+
+      .p-accordion-header {
+        margin: 0;
+      }
+
+      .p-accordion-header-link {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding: 0.75rem 1rem;
+        background: var(--p-content-background);
+        color: var(--p-text-color);
+        font-weight: 600;
+        cursor: pointer;
+        border: none;
+        transition: all var(--p-transition-duration, 200ms);
+
+        &:hover {
+          background: var(--p-highlight-background);
+          color: var(--p-highlight-text-color);
+        }
+
+        &:focus {
+          outline: 2px solid var(--p-primary-color);
+          outline-offset: -2px;
+        }
+
+        &.p-accordion-header-active {
+          background: var(--p-highlight-background);
+          color: var(--p-primary-color);
+        }
+      }
+
+      .p-accordion-header-title {
+        flex: 1;
+      }
+
+      .p-accordion-toggle-icon {
+        margin-left: 1rem;
+        transform: rotate(0);
+        transition: transform var(--p-transition-duration, 200ms);
+        flex-shrink: 0;
+
+        &.expanded {
+          transform: rotate(180deg);
+        }
+      }
+
+      .p-accordion-panel {
+        padding: 1rem;
+        background: var(--p-content-background);
+        color: var(--p-text-color-secondary);
+        display: none;
+
+        &.p-accordion-panel-active {
+          display: block;
+        }
+      }
+    }
+  `],
 })
 export class AccordionComponent {
   readonly items = input<AccordionItem[]>([]);
